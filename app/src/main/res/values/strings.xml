@@ -1,0 +1,6 @@
+<resources>
+    <string name="app_name">Swordfall</string>
+    <string name="facebook_app_id">448988009073436</string>
+    <string name="fb_login_protocol_scheme">fb448988009073436</string>
+    <string name="firebase_oauth_client_id">765095643023-ftnlhm70t7jvaurl3p4jdde6lgm0ltof.apps.googleusercontent.com</string>
+</resources>
