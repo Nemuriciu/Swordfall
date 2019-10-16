@@ -43,7 +43,7 @@ public class RegisterActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.baseline_close_white_24dp);
+        actionBar.setHomeAsUpIndicator(R.drawable.close_button);
 
         email = findViewById(R.id.input_email);
         pass = findViewById(R.id.input_password);
@@ -61,7 +61,6 @@ public class RegisterActivity extends AppCompatActivity {
                     mAuth.createUserWithEmailAndPassword(emailText, passText)
                             .addOnCompleteListener(this, task -> {
                                 if (task.isSuccessful()) {
-                                    Log.d(TAG, "createUserWithEmail:success");
                                     FirebaseUser user = mAuth.getCurrentUser();
                                     assert user != null;
                                     String uid = user.getUid();
@@ -69,8 +68,11 @@ public class RegisterActivity extends AppCompatActivity {
                                     FirebaseFirestore db = FirebaseFirestore.getInstance();
                                     Map<String, Object> data = new HashMap<>();
                                     data.put("hasCharacter", false);
+                                    data.put("email", emailText);
 
-                                    db.collection("users").document(uid).set(data);
+                                    db.collection("users").document(uid)
+                                            .set(data)
+                                            .addOnFailureListener(e -> Log.w(TAG, "Error writing document.", e));
 
                                     Intent intent = new Intent(this, CharacterCreationActivity.class);
                                     intent.putExtra("uid", user.getUid());

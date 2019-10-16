@@ -4,7 +4,7 @@
     xmlns:tools="http://schemas.android.com/tools"
     android:layout_width="match_parent"
     android:layout_height="match_parent"
-    android:background="@color/browser_actions_divider_color"
+    android:background="@color/colorPrimaryDark"
     android:focusableInTouchMode="true"
     tools:context=".LoginActivity">
 
@@ -12,7 +12,7 @@
         android:id="@+id/background"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
-        android:background="@drawable/splashscreen"
+        android:background="@drawable/login_background"
         android:contentDescription="@string/app_name"/>
 
     <TextView
@@ -21,13 +21,11 @@
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:ems="10"
-        android:fontFamily="serif"
         android:gravity="center"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textColor="@android:color/holo_orange_light"
+        android:textColor="?attr/colorError"
         android:textSize="40sp"
-        android:textStyle="bold"
         android:theme="@style/Theme.AppCompat" />
 
     <LinearLayout
@@ -50,9 +48,9 @@
                 android:id="@+id/login_email"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                android:layout_gravity="center_horizontal|center"
                 android:hint="Email"
                 android:inputType="textEmailAddress" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -70,9 +68,9 @@
                 android:id="@+id/login_password"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
+                android:layout_gravity="center_horizontal|center"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
-                android:layout_gravity="center_horizontal|center"
                 android:hint="Password"
                 android:inputType="textPassword" />
         </com.google.android.material.textfield.TextInputLayout>
@@ -81,11 +79,11 @@
             android:id="@+id/loginButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="8dp"
             android:layout_gravity="center_horizontal|center"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="8dp"
             android:text="Login"
             android:textAlignment="center" />
 
@@ -93,11 +91,11 @@
             android:id="@+id/registerButton"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="60dp"
-            android:layout_marginEnd="60dp"
-            android:layout_marginTop="8dp"
-            android:layout_marginBottom="16dp"
             android:layout_gravity="center_horizontal|center"
+            android:layout_marginStart="60dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="16dp"
             android:text="Create Account"
             android:textAlignment="center" />
     </LinearLayout>
