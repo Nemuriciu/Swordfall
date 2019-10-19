@@ -9,23 +9,28 @@
     tools:context=".LoginActivity">
 
     <ImageView
-        android:id="@+id/background"
+        android:id="@+id/loginBackground"
         android:layout_width="match_parent"
         android:layout_height="match_parent"
         android:background="@drawable/login_background"
-        android:contentDescription="@string/app_name"/>
+        android:contentDescription="@string/app_name" />
 
     <TextView
-        android:id="@+id/title"
+        android:id="@+id/loginTitle"
         android:layout_width="wrap_content"
         android:layout_height="wrap_content"
         android:layout_marginTop="60dp"
         android:ems="10"
+        android:fontFamily="@font/merienda_one"
         android:gravity="center"
+        android:shadowColor="@android:color/black"
+        android:shadowDx="1"
+        android:shadowDy="1"
+        android:shadowRadius="3"
         android:text="@string/app_name"
         android:textAlignment="center"
-        android:textColor="?attr/colorError"
         android:textSize="40sp"
+        android:textStyle="bold"
         android:theme="@style/Theme.AppCompat" />
 
     <LinearLayout
@@ -36,43 +41,51 @@
         android:orientation="vertical">
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_email"
+            android:id="@+id/loginLayoutEmail"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="16dp"
+            android:background="@drawable/login_input_field"
             android:layout_gravity="center_horizontal|center"
             android:theme="@style/Theme.AppCompat">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_email"
+                android:id="@+id/loginEmail"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
+                android:background="@null"
                 android:hint="Email"
-                android:inputType="textEmailAddress" />
+                android:inputType="textEmailAddress"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <com.google.android.material.textfield.TextInputLayout
-            android:id="@+id/layout_pass"
+            android:id="@+id/loginLayoutPass"
             android:layout_width="match_parent"
             android:layout_height="wrap_content"
-            android:layout_marginStart="24dp"
-            android:layout_marginEnd="24dp"
+            android:layout_marginStart="60dp"
+            android:layout_marginEnd="60dp"
+            android:layout_marginBottom="24dp"
+            android:background="@drawable/login_input_field"
             android:layout_gravity="center_horizontal|center"
             android:theme="@style/Theme.AppCompat">
 
             <com.google.android.material.textfield.TextInputEditText
-                android:id="@+id/login_password"
+                android:id="@+id/loginPass"
                 android:layout_width="match_parent"
                 android:layout_height="wrap_content"
                 android:layout_gravity="center_horizontal|center"
                 android:layout_marginStart="24dp"
                 android:layout_marginEnd="24dp"
+                android:background="@null"
                 android:hint="Password"
-                android:inputType="textPassword" />
+                android:inputType="textPassword"
+                android:textSize="18sp" />
         </com.google.android.material.textfield.TextInputLayout>
 
         <androidx.appcompat.widget.AppCompatButton
@@ -81,11 +94,30 @@
             android:layout_height="wrap_content"
             android:layout_gravity="center_horizontal|center"
             android:layout_marginStart="60dp"
-            android:layout_marginTop="8dp"
             android:layout_marginEnd="60dp"
             android:layout_marginBottom="8dp"
+            android:background="@drawable/login_button_login_image"
+            android:fontFamily="@font/raleway_semibold"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             android:text="Login"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="14sp" />
+
+        <TextView
+            android:id="@+id/loginForgotPass"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_gravity="center"
+            android:fontFamily="@font/raleway_semibold"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
+            android:text="Forgot password?"
+            android:textSize="16sp" />
 
         <androidx.appcompat.widget.AppCompatButton
             android:id="@+id/registerButton"
@@ -96,8 +128,15 @@
             android:layout_marginTop="8dp"
             android:layout_marginEnd="60dp"
             android:layout_marginBottom="16dp"
+            android:background="@drawable/login_button_register_image"
+            android:fontFamily="@font/raleway_semibold"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1"
+            android:shadowDy="1"
+            android:shadowRadius="2"
             android:text="Create Account"
-            android:textAlignment="center" />
+            android:textAlignment="center"
+            android:textSize="14sp" />
     </LinearLayout>
 
 </RelativeLayout>

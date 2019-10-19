@@ -43,16 +43,16 @@ public class RegisterActivity extends AppCompatActivity {
         ActionBar actionBar = getSupportActionBar();
         assert actionBar != null;
         actionBar.setDisplayHomeAsUpEnabled(true);
-        actionBar.setHomeAsUpIndicator(R.drawable.close_button);
+        actionBar.setHomeAsUpIndicator(R.drawable.register_close_button);
 
-        email = findViewById(R.id.input_email);
-        pass = findViewById(R.id.input_password);
-        passConfirm = findViewById(R.id.input_confirm_password);
+        email = findViewById(R.id.registerEmail);
+        pass = findViewById(R.id.registerPass);
+        passConfirm = findViewById(R.id.registerConfirmPass);
 
-        AppCompatButton confirmButton = findViewById(R.id.createAccount);
+        AppCompatButton confirmButton = findViewById(R.id.registerConfirmButton);
 
         confirmButton.setOnClickListener(v -> {
-            if (v.getId() == R.id.createAccount) {
+            if (v.getId() == R.id.registerConfirmButton) {
                 boolean res = validate();
                 String emailText = Objects.requireNonNull(email.getText()).toString();
                 String passText = Objects.requireNonNull(pass.getText()).toString();
@@ -75,6 +75,7 @@ public class RegisterActivity extends AppCompatActivity {
                                             .addOnFailureListener(e -> Log.w(TAG, "Error writing document.", e));
 
                                     Intent intent = new Intent(this, CharacterCreationActivity.class);
+                                    intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                     intent.putExtra("uid", user.getUid());
                                     startActivity(intent);
                                 } else {

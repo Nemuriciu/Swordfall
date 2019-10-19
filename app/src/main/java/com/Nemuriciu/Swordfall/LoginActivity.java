@@ -3,6 +3,7 @@ package com.Nemuriciu.Swordfall;
 import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
+import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -30,6 +31,7 @@ public class LoginActivity extends AppCompatActivity {
     private TextInputLayout layoutPass;
     private AppCompatButton loginButton;
     private AppCompatButton registerButton;
+    private TextView forgotPass;
 
     @Override
     protected void onStart() {
@@ -43,32 +45,43 @@ public class LoginActivity extends AppCompatActivity {
             DocumentReference docRef = db.collection("users").document(uid);
             docRef.get().addOnCompleteListener(task -> {
                 if (task.isSuccessful()) {
-                    DocumentSnapshot document = task.getResult();
-                    assert document != null;
-                    if (document.exists()) {
-                        boolean res = (boolean) Objects.requireNonNull(document.getData()).get("hasCharacter");
+                    DocumentSnapshot doc = task.getResult();
+                    assert doc != null;
+                    if (doc.exists()) {
+                        boolean res = (boolean) Objects.requireNonNull(doc.getData()).get("hasCharacter");
 
                         Intent intent;
-                        if (res)
+                        if (res) {
                             intent = new Intent(this, MainActivity.class);
+
+                            intent.putExtra("username", (String)doc.get("username"));
+                            intent.putExtra("class", (String)doc.get("class"));
+                            intent.putExtra("level", (long)doc.get("level"));
+                            intent.putExtra("gold", (long)doc.get("gold"));
+                            intent.putExtra("currentStamina", (long)doc.get("currentStamina"));
+                            intent.putExtra("maxStamina", (long)doc.get("maxStamina"));
+                            intent.putExtra("currentExp", (long)doc.get("currentExp"));
+                            intent.putExtra("maxExp", (long)doc.get("maxExp"));
+                        }
                         else
                             intent = new Intent(this, CharacterCreationActivity.class);
+
 
                         intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                         intent.putExtra("uid", uid);
                         startActivity(intent);
-                        overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                     }
                 } else
                     Log.d(TAG, "DocRef get failed with ", task.getException());
             });
         } else {
-            email.animate().alpha(1.0f).setDuration(3000).start();
-            layoutEmail.animate().alpha(1.0f).setDuration(3000).start();
-            pass.animate().alpha(1.0f).setDuration(3000).start();
-            layoutPass.animate().alpha(1.0f).setDuration(3000).start();
-            loginButton.animate().alpha(1.0f).setDuration(3000).start();
-            registerButton.animate().alpha(1.0f).setDuration(3000).start();
+            email.setAlpha(1.0f);
+            layoutEmail.setAlpha(1.0f);
+            pass.setAlpha(1.0f);
+            layoutPass.setAlpha(1.0f);
+            loginButton.setAlpha(1.0f);
+            registerButton.setAlpha(1.0f);
+            forgotPass.setAlpha(1.0f);
         }
     }
 
@@ -80,13 +93,13 @@ public class LoginActivity extends AppCompatActivity {
         FirebaseApp.initializeApp(this);
         mAuth = FirebaseAuth.getInstance();
 
-        email = findViewById(R.id.login_email);
-        layoutEmail = findViewById(R.id.layout_email);
-        pass = findViewById(R.id.login_password);
-        layoutPass = findViewById(R.id.layout_pass);
+        email = findViewById(R.id.loginEmail);
+        layoutEmail = findViewById(R.id.loginLayoutEmail);
+        pass = findViewById(R.id.loginPass);
+        layoutPass = findViewById(R.id.loginLayoutPass);
         loginButton = findViewById(R.id.loginButton);
         registerButton = findViewById(R.id.registerButton);
-
+        forgotPass = findViewById(R.id.loginForgotPass);
 
         email.setAlpha(0);
         layoutEmail.setAlpha(0);
@@ -94,6 +107,7 @@ public class LoginActivity extends AppCompatActivity {
         layoutPass.setAlpha(0);
         loginButton.setAlpha(0);
         registerButton.setAlpha(0);
+        forgotPass.setAlpha(0);
 
         // Email/Pass Login
         loginButton.setOnClickListener(v -> {
@@ -114,21 +128,29 @@ public class LoginActivity extends AppCompatActivity {
                                     DocumentReference docRef = db.collection("users").document(uid);
                                     docRef.get().addOnCompleteListener(task2 -> {
                                         if (task2.isSuccessful()) {
-                                            DocumentSnapshot document = task2.getResult();
-                                            assert document != null;
-                                            if (document.exists()) {
-                                                boolean res = (boolean) Objects.requireNonNull(document.getData()).get("hasCharacter");
+                                            DocumentSnapshot doc = task2.getResult();
+                                            assert doc != null;
+                                            if (doc.exists()) {
+                                                boolean res = (boolean) Objects.requireNonNull(doc.getData()).get("hasCharacter");
 
                                                 Intent intent;
-                                                if (res)
+                                                if (res) {
                                                     intent = new Intent(this, MainActivity.class);
-                                                else
+
+                                                    intent.putExtra("username", (String)doc.get("username"));
+                                                    intent.putExtra("class", (String)doc.get("class"));
+                                                    intent.putExtra("level", (long)doc.get("level"));
+                                                    intent.putExtra("gold", (long)doc.get("gold"));
+                                                    intent.putExtra("currentStamina", (long)doc.get("currentStamina"));
+                                                    intent.putExtra("maxStamina", (long)doc.get("maxStamina"));
+                                                    intent.putExtra("currentExp", (long)doc.get("currentExp"));
+                                                    intent.putExtra("maxExp", (long)doc.get("maxExp"));
+                                                } else
                                                     intent = new Intent(this, CharacterCreationActivity.class);
 
                                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                                 intent.putExtra("uid", uid);
                                                 startActivity(intent);
-                                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                                             }
                                         } else
                                             Log.d(TAG, "DocRef get failed with ", task.getException());
@@ -140,7 +162,6 @@ public class LoginActivity extends AppCompatActivity {
                                 }
                             });
                 }
-
             }
         });
 
@@ -148,11 +169,6 @@ public class LoginActivity extends AppCompatActivity {
             if (v.getId() == R.id.registerButton)
                 createAccount();
         });
-    }
-
-    @Override
-    protected void onActivityResult(int requestCode, int resultCode, Intent data) {
-        super.onActivityResult(requestCode, resultCode, data);
     }
 
     @Override

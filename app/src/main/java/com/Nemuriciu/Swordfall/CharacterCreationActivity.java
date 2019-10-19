@@ -91,8 +91,15 @@ public class CharacterCreationActivity extends AppCompatActivity {
                                 Intent intent = new Intent(this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("uid", uid);
+                                intent.putExtra("username", username);
+                                intent.putExtra("class", currentSelection);
+                                intent.putExtra("level", (long)1);
+                                intent.putExtra("gold", (long)1250);
+                                intent.putExtra("currentStamina", (long)25);
+                                intent.putExtra("maxStamina", (long)25);
+                                intent.putExtra("currentExp", (long)0);
+                                intent.putExtra("maxExp", (long)100);
                                 startActivity(intent);
-                                overridePendingTransition(R.anim.fade_in, R.anim.fade_out);
                             }
                         } else {
                             Log.d(TAG, "Failed with: ", task.getException());
@@ -105,19 +112,17 @@ public class CharacterCreationActivity extends AppCompatActivity {
 
     private void createUser(String uid, String username, String selectedClass) {
         Map<String, Object> data = new HashMap<>();
-        Map<String, Object> info = new HashMap<>();
-
-        info.put("level", 1);
-        info.put("gold", 0);
-        info.put("currentExp", 0);
-        info.put("maxExp", 100);
-        info.put("currentStamina", 25);
-        info.put("maxStamina", 25);
 
         data.put("hasCharacter", true);
         data.put("username", username);
         data.put("class", selectedClass);
-        data.put("info", info);
+
+        data.put("level", 1);
+        data.put("gold", 1250);
+        data.put("currentExp", 0);
+        data.put("maxExp", 100);
+        data.put("currentStamina", 25);
+        data.put("maxStamina", 25);
 
         db.collection("users").document(uid)
                 .update(data)
