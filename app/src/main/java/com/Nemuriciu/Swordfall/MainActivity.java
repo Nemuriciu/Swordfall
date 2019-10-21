@@ -48,18 +48,7 @@ public class MainActivity extends AppCompatActivity {
         getExtras(extras);
         updateUI();
 
-        ImageView settingsButton = findViewById(R.id.menuItemSettings);
-        settingsButton.setOnClickListener(v -> {
-            if (v.getId() == R.id.menuItemSettings) {
-
-                AuthUI.getInstance()
-                        .signOut(this)
-                        .addOnCompleteListener(task -> {
-                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
-                            finish();
-                        });
-            }
-        });
+        setMenuButtons();
     }
 
     @Override
@@ -110,5 +99,39 @@ public class MainActivity extends AppCompatActivity {
                 + String.format(Locale.ENGLISH,"%,d", maxStam));
         expBar.setMax((int)maxExp);
         expBar.setProgress((int)currentExp);
+    }
+
+    private void setMenuButtons() {
+        ImageView combatButton = findViewById(R.id.menuItemCombat);
+        ImageView settingsButton = findViewById(R.id.menuItemSettings);
+
+        settingsButton.setOnClickListener(v -> {
+            if (v.getId() == R.id.menuItemSettings) {
+                AuthUI.getInstance()
+                        .signOut(this)
+                        .addOnCompleteListener(task -> {
+                            startActivity(new Intent(MainActivity.this, LoginActivity.class));
+                            finish();
+                        });
+            }
+        });
+
+        combatButton.setOnClickListener(v -> {
+            if (v.getId() == R.id.menuItemCombat) {
+                Intent intent = new Intent(this, CombatActivity.class);
+                intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
+                intent.putExtra("uid", uid);
+                intent.putExtra("username", username);
+                intent.putExtra("class", classs);
+                intent.putExtra("level", level);
+                intent.putExtra("gold", gold);
+                intent.putExtra("currentStamina", currentStam);
+                intent.putExtra("maxStamina", maxStam);
+                intent.putExtra("currentExp", currentExp);
+                intent.putExtra("maxExp", maxExp);
+                startActivity(intent);
+                overridePendingTransition(R.anim.slide_in_right, R.anim.slide_out_left);
+            }
+        });
     }
 }

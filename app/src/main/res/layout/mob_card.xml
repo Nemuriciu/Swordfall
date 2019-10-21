@@ -1,0 +1,234 @@
+<?xml version="1.0" encoding="utf-8"?>
+<merge xmlns:android="http://schemas.android.com/apk/res/android"
+    xmlns:app="http://schemas.android.com/apk/res-auto"
+    android:layout_width="match_parent"
+    android:layout_height="80dp">
+
+    <ImageView
+        android:id="@+id/mobCardAvatar"
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="2dp"
+        android:layout_marginTop="2dp"
+        android:layout_marginBottom="2dp"
+        android:layout_weight=".25" />
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="match_parent"
+        android:layout_marginStart="4dp"
+        android:layout_marginTop="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_weight=".5">
+
+        <TextView
+            android:id="@+id/mobCardLevel"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/lato_bold"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:text="Lv. 1"
+            android:textSize="12sp" />
+
+        <ImageView
+            android:id="@+id/mobCardHealthIcon"
+            android:layout_width="18dp"
+            android:layout_height="18dp"
+            android:layout_below="@id/mobCardLevel"
+            android:layout_alignEnd="@id/mobCardLevel"
+            android:layout_alignParentStart="false"
+            android:layout_marginStart="4dp"
+            android:layout_marginTop="4dp"
+            app:srcCompat="@drawable/combat_hp_icon" />
+
+        <TextView
+            android:id="@+id/mobCardHealth"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobCardLevel"
+            android:layout_alignTop="@id/mobCardHealthIcon"
+            android:layout_marginStart="6dp"
+            android:layout_toEndOf="@id/mobCardHealthIcon"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:textAlignment="textEnd"
+            android:textColor="#a22"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardName"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_marginStart="6dp"
+            android:layout_marginTop="0dp"
+            android:layout_toEndOf="@id/mobCardLevel"
+            android:fontFamily="@font/lato_bold"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:textSize="12sp" />
+
+        <Button
+            android:id="@+id/mobCardAttackButton"
+            android:layout_width="50dp"
+            android:layout_height="16dp"
+            android:layout_alignParentBottom="true"
+            android:layout_centerHorizontal="true"
+            android:layout_marginBottom="2dp"
+            android:background="@drawable/combat_attack_mob_button"
+            android:fontFamily="@font/raleway_medium"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:text="Attack"
+            android:textAlignment="center"
+            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+            android:textSize="10sp" />
+    </RelativeLayout>
+
+    <RelativeLayout
+        android:layout_width="0dp"
+        android:layout_height="wrap_content"
+        android:layout_gravity="center"
+        android:layout_marginTop="4dp"
+        android:layout_marginEnd="4dp"
+        android:layout_marginBottom="4dp"
+        android:layout_weight=".25">
+
+        <TextView
+            android:id="@+id/mobCardStat"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="true"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:text="ATK"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardStat1"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobCardAtk"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="false"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:text="DEF"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardStat2"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobCardDef"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="false"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:text="DMG"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardStat3"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobCardDmg"
+            android:layout_alignParentStart="true"
+            android:layout_alignParentTop="false"
+            android:layout_marginTop="2dp"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:text="LUCK"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardAtk"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_alignParentTop="true"
+            android:layout_alignParentEnd="true"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:textAlignment="textEnd"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardDef"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobCardAtk"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:textAlignment="textEnd"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardDmg"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobCardDef"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:textAlignment="textEnd"
+            android:textSize="12sp" />
+
+        <TextView
+            android:id="@+id/mobCardLuck"
+            android:layout_width="wrap_content"
+            android:layout_height="wrap_content"
+            android:layout_below="@id/mobCardDmg"
+            android:layout_alignParentEnd="true"
+            android:layout_marginTop="2dp"
+            android:layout_marginEnd="2dp"
+            android:fontFamily="@font/lato"
+            android:shadowColor="@android:color/black"
+            android:shadowDx="1.5"
+            android:shadowDy="1.5"
+            android:shadowRadius="3"
+            android:textAlignment="textEnd"
+            android:textSize="12sp" />
+    </RelativeLayout>
+</merge>

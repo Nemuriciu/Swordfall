@@ -16,7 +16,10 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.Collections;
 import java.util.HashMap;
+import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -123,6 +126,9 @@ public class CharacterCreationActivity extends AppCompatActivity {
         data.put("maxExp", 100);
         data.put("currentStamina", 25);
         data.put("maxStamina", 25);
+
+        List<Integer> zoneDepth = new ArrayList<>(Collections.nCopies(5, 1));
+        data.put("zoneDepth", zoneDepth);
 
         db.collection("users").document(uid)
                 .update(data)
