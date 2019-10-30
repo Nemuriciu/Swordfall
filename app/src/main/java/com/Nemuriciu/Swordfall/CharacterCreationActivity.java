@@ -17,9 +17,9 @@ import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
 import java.util.ArrayList;
+import java.util.Arrays;
 import java.util.Collections;
 import java.util.HashMap;
-import java.util.List;
 import java.util.Map;
 import java.util.Objects;
 
@@ -89,19 +89,27 @@ public class CharacterCreationActivity extends AppCompatActivity {
 
                                 // Add username to usersByName collection
                                 db.collection("usersByName").document(username).set(data);
-                                createUser(uid, username, currentSelection);
+                                createUser(uid, username);
 
                                 Intent intent = new Intent(this, MainActivity.class);
                                 intent.setFlags(Intent.FLAG_ACTIVITY_NEW_TASK | Intent.FLAG_ACTIVITY_CLEAR_TASK);
                                 intent.putExtra("uid", uid);
                                 intent.putExtra("username", username);
-                                intent.putExtra("class", currentSelection);
                                 intent.putExtra("level", (long)1);
                                 intent.putExtra("gold", (long)1250);
                                 intent.putExtra("currentStamina", (long)25);
                                 intent.putExtra("maxStamina", (long)25);
                                 intent.putExtra("currentExp", (long)0);
-                                intent.putExtra("maxExp", (long)100);
+                                intent.putExtra("maxExp", (long)650);
+                                intent.putExtra("atk", (long)12);
+                                intent.putExtra("def", (long)12);
+                                intent.putExtra("vit", (long)12);
+                                intent.putExtra("dmg", (long)8);
+                                intent.putExtra("luck", (long)4);
+                                intent.putStringArrayListExtra("eqSlots",
+                                        new ArrayList<>(Collections.nCopies(8, "0")));
+                                intent.putStringArrayListExtra("bagSlots",
+                                        new ArrayList<>(Collections.nCopies(56, "0")));
                                 startActivity(intent);
                             }
                         } else {
@@ -113,22 +121,23 @@ public class CharacterCreationActivity extends AppCompatActivity {
         });
     }
 
-    private void createUser(String uid, String username, String selectedClass) {
+    private void createUser(String uid, String username) {
         Map<String, Object> data = new HashMap<>();
 
         data.put("hasCharacter", true);
         data.put("username", username);
-        data.put("class", selectedClass);
 
         data.put("level", 1);
         data.put("gold", 1250);
         data.put("currentExp", 0);
-        data.put("maxExp", 100);
-        data.put("currentStamina", 25);
-        data.put("maxStamina", 25);
+        data.put("maxExp", 650);
+        data.put("currentStamina", 150);
+        data.put("maxStamina", 150);
 
-        List<Integer> zoneDepth = new ArrayList<>(Collections.nCopies(5, 1));
-        data.put("zoneDepth", zoneDepth);
+        data.put("zoneDepth", Arrays.asList(1, 1, 1, 1, 1));
+        data.put("stats", Arrays.asList(12, 12, 12, 8, 4));
+        data.put("eqSlots", Collections.nCopies(8, "0"));
+        data.put("bagSlots", Collections.nCopies(56, "0"));
 
         db.collection("users").document(uid)
                 .update(data)

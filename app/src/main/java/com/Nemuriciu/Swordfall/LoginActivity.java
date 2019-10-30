@@ -15,6 +15,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.util.ArrayList;
+import java.util.List;
 import java.util.Objects;
 
 import androidx.appcompat.app.AlertDialog;
@@ -55,13 +57,26 @@ public class LoginActivity extends AppCompatActivity {
                             intent = new Intent(this, MainActivity.class);
 
                             intent.putExtra("username", (String)doc.get("username"));
-                            intent.putExtra("class", (String)doc.get("class"));
                             intent.putExtra("level", (long)doc.get("level"));
                             intent.putExtra("gold", (long)doc.get("gold"));
                             intent.putExtra("currentStamina", (long)doc.get("currentStamina"));
                             intent.putExtra("maxStamina", (long)doc.get("maxStamina"));
                             intent.putExtra("currentExp", (long)doc.get("currentExp"));
                             intent.putExtra("maxExp", (long)doc.get("maxExp"));
+                            intent.putExtra("atk", (long) ((List) Objects.
+                                    requireNonNull(doc.get("stats"))).get(0));
+                            intent.putExtra("def", (long) ((List) Objects.
+                                    requireNonNull(doc.get("stats"))).get(1));
+                            intent.putExtra("vit", (long) ((List) Objects.
+                                    requireNonNull(doc.get("stats"))).get(2));
+                            intent.putExtra("dmg", (long) ((List) Objects.
+                                    requireNonNull(doc.get("stats"))).get(3));
+                            intent.putExtra("luck", (long) ((List) Objects.
+                                    requireNonNull(doc.get("stats"))).get(4));
+                            intent.putStringArrayListExtra("eqSlots",
+                                    (ArrayList<String>) doc.get("eqSlots"));
+                            intent.putStringArrayListExtra("bagSlots",
+                                    (ArrayList<String>) doc.get("bagSlots"));
                         }
                         else
                             intent = new Intent(this, CharacterCreationActivity.class);
@@ -138,13 +153,26 @@ public class LoginActivity extends AppCompatActivity {
                                                     intent = new Intent(this, MainActivity.class);
 
                                                     intent.putExtra("username", (String)doc.get("username"));
-                                                    intent.putExtra("class", (String)doc.get("class"));
                                                     intent.putExtra("level", (long)doc.get("level"));
                                                     intent.putExtra("gold", (long)doc.get("gold"));
                                                     intent.putExtra("currentStamina", (long)doc.get("currentStamina"));
                                                     intent.putExtra("maxStamina", (long)doc.get("maxStamina"));
                                                     intent.putExtra("currentExp", (long)doc.get("currentExp"));
                                                     intent.putExtra("maxExp", (long)doc.get("maxExp"));
+                                                    intent.putExtra("atk", (long) ((List) Objects.
+                                                            requireNonNull(doc.get("stats"))).get(0));
+                                                    intent.putExtra("def", (long) ((List) Objects.
+                                                            requireNonNull(doc.get("stats"))).get(1));
+                                                    intent.putExtra("vit", (long) ((List) Objects.
+                                                            requireNonNull(doc.get("stats"))).get(2));
+                                                    intent.putExtra("dmg", (long) ((List) Objects.
+                                                            requireNonNull(doc.get("stats"))).get(3));
+                                                    intent.putExtra("luck", (long) ((List) Objects.
+                                                            requireNonNull(doc.get("stats"))).get(4));
+                                                    intent.putStringArrayListExtra("eqSlots",
+                                                            (ArrayList<String>) doc.get("eqSlots"));
+                                                    intent.putStringArrayListExtra("bagSlots",
+                                                            (ArrayList<String>) doc.get("bagSlots"));
                                                 } else
                                                     intent = new Intent(this, CharacterCreationActivity.class);
 

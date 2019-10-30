@@ -1,0 +1,53 @@
+{
+  "93108": {
+    "type": "weapon",
+    "name": "Hand Axe",
+    "avatar": "item_93108",
+    "rarity": "rare",
+    "levelReq": 1,
+    "atk": 5,
+    "def": 0,
+    "vit": 0,
+    "dmg": 12,
+    "luck": 0
+  },
+
+  "67613": {
+    "type": "helm",
+    "name": "Wolfscale Coif",
+    "avatar": "item_67613",
+    "rarity": "epic",
+    "levelReq": 2,
+    "atk": 4,
+    "def": 6,
+    "vit": 6,
+    "dmg": 0,
+    "luck": 0
+  },
+
+  "77108": {
+    "type": "chest",
+    "name": "Leather Tunic",
+    "avatar": "item_77108",
+    "rarity": "common",
+    "levelReq": 1,
+    "atk": 0,
+    "def": 4,
+    "vit": 4,
+    "dmg": 0,
+    "luck": 0
+  },
+
+  "36810": {
+    "type": "offhand",
+    "name": "Elven Shield",
+    "avatar": "item_36810",
+    "rarity": "uncommon",
+    "levelReq": 1,
+    "atk": 0,
+    "def": 4,
+    "vit": 3,
+    "dmg": 0,
+    "luck": 0
+  }
+}
