@@ -1,17 +1,15 @@
 package com.Nemuriciu.Swordfall;
 
-import android.util.Log;
-
 import java.util.ArrayList;
 import java.util.Random;
 
 class CombatManager {
-    private static final String TAG = "CombatManager";
     private String pName, eName;
     private long pLvl, eLvl;
 
     private long pHp, eHp;
-    private long pAtk, eAtk, pDef, eDef, pDmg, eDmg, pLuck, eLuck;
+    private long pAtk, eAtk, pDef, eDef;
+    private long pDmgMin, pDmgMax, eDmgMin, eDmgMax, pLuck, eLuck;
 
     private ArrayList<String> combatLog;
     private boolean pTurn = true;
@@ -19,7 +17,8 @@ class CombatManager {
 
     CombatManager(String pName, String eName, long pLvl, long eLvl,
                   long pHp, long eHp, long pAtk, long eAtk, long pDef,
-                  long eDef, long pDmg, long eDmg, long pLuck, long eLuck) {
+                  long eDef, long pDmgMin, long pDmgMax, long eDmgMin,
+                  long eDmgMax, long pLuck, long eLuck) {
         this.pName = pName;
         this.eName = eName;
         this.pLvl = pLvl;
@@ -30,8 +29,10 @@ class CombatManager {
         this.eAtk = eAtk;
         this.pDef = pDef;
         this.eDef = eDef;
-        this.pDmg = pDmg;
-        this.eDmg = eDmg;
+        this.pDmgMin = pDmgMin;
+        this.pDmgMax = pDmgMax;
+        this.eDmgMin = eDmgMin;
+        this.eDmgMax = eDmgMax;
         this.pLuck = pLuck;
         this.eLuck = eLuck;
         combatLog = new ArrayList<>();
@@ -69,31 +70,33 @@ class CombatManager {
         String result = "Inconclusive";
         double pHitChance = getHitChance(pLvl, eLvl, pAtk, eDef);
         double eHitChance = getHitChance(eLvl, pLvl, eAtk, pDef);
-        Log.e(TAG, "P_HIT: " + pHitChance);
-        Log.e(TAG, "E_HIT: " + eHitChance);
+        //Log.e(TAG, "P_HIT: " + pHitChance);
+        //Log.e(TAG, "E_HIT: " + eHitChance);
 
         while (pHp > 0 && eHp > 0) {
-            if (currentRound == 40)                                // Combat inconclusive after 100 rounds
+            if (currentRound == 40)                                // CombatInfo inconclusive after 40 rounds
                 break;
 
             if (pTurn) {
                 if (r.nextDouble() <= pHitChance) {                 // Player Hits Enemy
                     // TODO: Calculate Luck
-                    String log = pName + " hits " + eName + " for " + pDmg + " Dmg";
+                    int dmg = r.nextInt((int)pDmgMax - (int)pDmgMin) + (int)pDmgMin;
+                    String log = pName + " hits for " + dmg + " damage.";
                     combatLog.add(log);
-                    eHp -= pDmg;
+                    eHp -= dmg;
                 } else {                                            // Player Miss Enemy
-                    String log = pName + " miss the attack on " + eName;
+                    String log = pName + " miss the attack.";
                     combatLog.add(log);
                 }
             } else {
                 if (r.nextDouble() <= eHitChance) {                 // Enemy Hits Player
                     // TODO: Calculate Luck
-                    String log = eName + " hits " + pName + " for " + eDmg + " Dmg";
+                    int dmg = r.nextInt((int)eDmgMax - (int)eDmgMin) + (int)eDmgMin;
+                    String log = eName + " hits for " + dmg + " damage.";
                     combatLog.add(log);
-                    pHp -= eDmg;
+                    pHp -= dmg;
                 } else {                                            // Enemy Miss Player
-                    String log = eName + " miss the attack on " + pName;
+                    String log = eName + " miss the attack.";
                     combatLog.add(log);
                 }
             }

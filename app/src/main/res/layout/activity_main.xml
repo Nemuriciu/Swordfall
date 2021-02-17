@@ -27,7 +27,7 @@
                 android:id="@+id/avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/app_icon" />
+                app:srcCompat="@drawable/app_icon" />
 
         </FrameLayout>
 
@@ -44,36 +44,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/raleway_bold"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/lato_bold"
                 android:shadowColor="@android:color/black"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2"
                 android:text="Surubelnitoi1995"
-                android:textColor="#EA7500"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/lato_bold"
                     android:text="Level "
-                    android:textColor="#EA7500"
                     android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
                     android:fontFamily="@font/lato_bold"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1"
@@ -81,7 +81,6 @@
                     android:shadowRadius="2"
                     android:text="50"
                     android:textAlignment="center"
-                    android:textColor="#EA7500"
                     android:textSize="16sp" />
 
             </LinearLayout>
@@ -113,19 +112,17 @@
                     android:shadowRadius="2"
                     android:text="2,500,000"
                     android:textAlignment="textEnd"
-                    android:textColor="#cccccc"
-                    android:textSize="12sp" />
+                    android:textColor="#E1E1E1"
+                    android:textSize="14sp" />
 
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical|end"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:layout_weight="0"
-                    android:background="@drawable/icon_gold_coin" />
+                    android:background="@drawable/icon_gold" />
 
             </LinearLayout>
 
@@ -140,15 +137,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end"
                     android:layout_weight="1"
-                    android:fontFamily="@font/lato"
+                    android:fontFamily="@font/lato_bold"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
-                    android:text="1000/1000"
+                    android:text="500/500"
                     android:textAlignment="textEnd"
                     android:textColor="#7EE6E2"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="24dp"
@@ -197,7 +194,6 @@
             android:id="@+id/overviewLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_weight="1"
             android:gravity="bottom|center"
             android:orientation="vertical">
 
@@ -219,11 +215,11 @@
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="16dp"
+                    android:layout_marginStart="12dp"
                     android:layout_marginTop="10dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="10dp"
-                    android:layout_weight=".6"
+                    android:layout_weight=".575"
                     android:orientation="vertical">
 
                     <LinearLayout
@@ -283,12 +279,12 @@
                             app:srcCompat="@drawable/eq_chest" />
 
                         <ImageView
-                            android:id="@+id/eq_bracers"
+                            android:id="@+id/eq_shoulder"
                             android:layout_width="0dp"
                             android:layout_height="wrap_content"
                             android:layout_weight="1"
                             android:tag="bracers"
-                            app:srcCompat="@drawable/eq_bracers" />
+                            app:srcCompat="@drawable/eq_shoulder" />
 
                     </LinearLayout>
 
@@ -363,179 +359,319 @@
                 <LinearLayout
                     android:id="@+id/statsLayout"
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
+                    android:layout_height="match_parent"
                     android:layout_marginStart="8dp"
                     android:layout_marginTop="12dp"
                     android:layout_marginEnd="8dp"
                     android:layout_marginBottom="12dp"
-                    android:layout_weight=".4"
-                    android:background="@drawable/main_stats_frame_bacground"
+                    android:layout_weight=".425"
                     android:orientation="vertical">
 
                     <LinearLayout
-                        android:id="@+id/statsAtkLayout"
-                        android:layout_width="match_parent"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="8dp"
-                        android:orientation="horizontal">
+                        android:background="@drawable/main_stats_frame_bacground"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/statsAtkLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/statsAtkPlus"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:onClick="statAllocListener"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/icon_plus" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="ATK:" />
+
+                            <TextView
+                                android:id="@+id/statsAtkText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:layout_gravity="center"
+                                android:fontFamily="@font/lato_bold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="250"
+                                android:textAlignment="textEnd"
+                                android:textStyle="bold" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/statsDefLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/statsDefPlus"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:onClick="statAllocListener"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/icon_plus" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="DEF:" />
+
+                            <TextView
+                                android:id="@+id/statsDefText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_bold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="250"
+                                android:textAlignment="textEnd" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/statsVitLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/statsVitPlus"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:onClick="statAllocListener"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/icon_plus" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="VIT:" />
+
+                            <TextView
+                                android:id="@+id/statsVitText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_bold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="250"
+                                android:textAlignment="textEnd" />
+                        </LinearLayout>
+
+                        <LinearLayout
+                            android:id="@+id/statsLuckLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="10dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="10dp"
+                            android:orientation="horizontal">
+
+                            <ImageView
+                                android:id="@+id/statsLuckPlus"
+                                android:layout_width="18dp"
+                                android:layout_height="18dp"
+                                android:layout_gravity="center"
+                                android:layout_marginEnd="4dp"
+                                android:clickable="true"
+                                android:focusable="true"
+                                android:onClick="statAllocListener"
+                                android:visibility="gone"
+                                app:srcCompat="@drawable/icon_plus" />
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="LUCK:" />
+
+                            <TextView
+                                android:id="@+id/statsLuckText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_bold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="150"
+                                android:textAlignment="textEnd"
+                                android:textAllCaps="false" />
+                        </LinearLayout>
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_marginTop="4dp"
+                        android:background="@drawable/main_stats_frame_bacground_tight"
+                        android:gravity="center"
+                        android:orientation="vertical">
+
+                        <LinearLayout
+                            android:id="@+id/statsDmgLayout"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="10dp"
+                            android:layout_marginTop="8dp"
+                            android:layout_marginEnd="10dp"
+                            android:layout_marginBottom="8dp"
+                            android:orientation="horizontal">
+
+                            <TextView
+                                android:layout_width="wrap_content"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/raleway_semibold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="DMG:" />
+
+                            <TextView
+                                android:id="@+id/statsDmgText"
+                                android:layout_width="match_parent"
+                                android:layout_height="wrap_content"
+                                android:fontFamily="@font/lato_bold"
+                                android:shadowColor="@android:color/black"
+                                android:shadowDx="1"
+                                android:shadowDy="1"
+                                android:shadowRadius="2"
+                                android:text="1-10"
+                                android:textAlignment="textEnd" />
+                        </LinearLayout>
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/statsNrLayout"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:layout_marginTop="6dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="ATK" />
-
-                        <TextView
-                            android:id="@+id/statsAtkText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
+                            android:layout_gravity="center"
                             android:fontFamily="@font/lato_bold"
                             android:shadowColor="@android:color/black"
                             android:shadowDx="1"
                             android:shadowDy="1"
                             android:shadowRadius="2"
-                            android:text="25"
-                            android:textAlignment="textEnd" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/statsDefLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:orientation="horizontal">
+                            android:text="Available Points:"
+                            android:textColor="#8BC34A"
+                            android:textSize="12sp" />
 
                         <TextView
+                            android:id="@+id/statsPoints"
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="DEF" />
-
-                        <TextView
-                            android:id="@+id/statsDefText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
-                            android:fontFamily="@font/lato_bold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="30"
-                            android:textAlignment="textEnd" />
-                    </LinearLayout>
-
-                    <LinearLayout
-                        android:id="@+id/statsVitLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="VIT" />
-
-                        <TextView
-                            android:id="@+id/statsVitText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
+                            android:layout_gravity="center"
+                            android:layout_marginStart="4dp"
                             android:fontFamily="@font/lato_bold"
                             android:shadowColor="@android:color/black"
                             android:shadowDx="1"
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="10"
-                            android:textAlignment="textEnd" />
+                            android:textAlignment="textEnd"
+                            android:textColor="#8BC34A"
+                            android:textSize="12sp" />
                     </LinearLayout>
 
                     <LinearLayout
-                        android:id="@+id/statsDmgLayout"
-                        android:layout_width="match_parent"
+                        android:id="@+id/statsButtonsLayout"
+                        android:layout_width="wrap_content"
                         android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:orientation="horizontal">
+                        android:layout_gravity="center"
+                        android:layout_marginStart="8dp"
+                        android:layout_marginTop="16dp"
+                        android:layout_marginEnd="8dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
 
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="DMG" />
-
-                        <TextView
-                            android:id="@+id/statsDmgText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
+                        <Button
+                            android:id="@+id/statsApply"
+                            android:layout_width="0dp"
+                            android:layout_height="18dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/combat_attack_mob_button"
                             android:fontFamily="@font/lato_bold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="150"
-                            android:textAlignment="textEnd" />
-                    </LinearLayout>
+                            android:onClick="statAllocListener"
+                            android:text="Apply"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="10sp" />
 
-                    <LinearLayout
-                        android:id="@+id/statsLuckLayout"
-                        android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_marginStart="4dp"
-                        android:layout_marginTop="4dp"
-                        android:layout_marginBottom="8dp"
-                        android:orientation="horizontal">
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
-                            android:layout_marginStart="8dp"
-                            android:fontFamily="@font/raleway_semibold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="LUCK" />
-
-                        <TextView
-                            android:id="@+id/statsLuckText"
-                            android:layout_width="match_parent"
-                            android:layout_height="wrap_content"
-                            android:layout_marginEnd="16dp"
+                        <Button
+                            android:id="@+id/statsReset"
+                            android:layout_width="0dp"
+                            android:layout_height="18dp"
+                            android:layout_marginStart="10dp"
+                            android:layout_weight="1"
+                            android:background="@drawable/combat_attack_mob_button"
                             android:fontFamily="@font/lato_bold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="1"
-                            android:shadowDy="1"
-                            android:shadowRadius="2"
-                            android:text="22"
-                            android:textAlignment="textEnd" />
+                            android:onClick="statAllocListener"
+                            android:text="Reset"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="10sp" />
                     </LinearLayout>
 
                 </LinearLayout>
@@ -1199,21 +1335,50 @@
                 android:id="@+id/itemTooltip"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:layout_marginStart="80dp"
-                android:layout_marginTop="90dp"
-                android:layout_marginEnd="80dp"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="64dp"
                 android:layout_marginBottom="160dp"
                 android:background="@drawable/main_frame_background_portrait"
                 android:clickable="true"
                 android:focusable="true">
 
+                <TextView
+                    android:id="@+id/itemBagSlot"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:visibility="gone" />
+
+                <ImageView
+                    android:id="@+id/itemPriceIcon"
+                    android:layout_width="16dp"
+                    android:layout_height="16dp"
+                    android:layout_alignParentBottom="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="4dp"
+                    android:layout_toEndOf="@id/itemPriceValue"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/icon_gold" />
+
+                <TextView
+                    android:id="@+id/itemPriceValue"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentBottom="true"
+                    android:layout_centerHorizontal="true"
+                    android:layout_gravity="center"
+                    android:layout_marginBottom="6dp"
+                    android:fontFamily="@font/lato"
+                    android:textSize="12sp"
+                    android:visibility="gone" />
+
                 <Button
                     android:id="@+id/itemTooltipSell"
                     android:layout_width="76dp"
                     android:layout_height="22dp"
-                    android:layout_alignParentBottom="true"
+                    android:layout_above="@id/itemPriceValue"
                     android:layout_centerHorizontal="true"
-                    android:layout_marginBottom="12dp"
+                    android:layout_marginBottom="4dp"
                     android:background="@drawable/combat_attack_mob_button"
                     android:fontFamily="@font/lato_bold"
                     android:onClick="sellItemListener"
@@ -1238,8 +1403,8 @@
 
                 <ImageView
                     android:id="@+id/itemTooltipAvatar"
-                    android:layout_width="52dp"
-                    android:layout_height="52dp"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
                     android:layout_below="@id/itemTooltipClose"
                     android:layout_alignParentEnd="true"
                     android:layout_marginTop="2dp"
@@ -1259,7 +1424,7 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/itemTooltipLevel"
@@ -1275,7 +1440,7 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <TextView
                     android:id="@+id/itemTooltipType"
@@ -1291,7 +1456,7 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
-                    android:textSize="12sp" />
+                    android:textSize="13sp" />
 
                 <ImageView
                     android:id="@+id/itemTooltipSeparator"
@@ -1329,7 +1494,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="ATK :"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/itemTooltipAtk"
@@ -1342,7 +1507,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="+50"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
 
                     </LinearLayout>
 
@@ -1364,7 +1529,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="DEF :"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/itemTooltipDef"
@@ -1377,7 +1542,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="+50"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -1398,7 +1563,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="VIT :"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/itemTooltipVit"
@@ -1411,7 +1576,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="+50"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -1432,7 +1597,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="DMG :"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/itemTooltipDmg"
@@ -1445,7 +1610,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="+50"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                     <LinearLayout
@@ -1466,7 +1631,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="LUCK :"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
 
                         <TextView
                             android:id="@+id/itemTooltipLuck"
@@ -1479,7 +1644,7 @@
                             android:shadowDy="1"
                             android:shadowRadius="2"
                             android:text="+50"
-                            android:textSize="12sp" />
+                            android:textSize="13sp" />
                     </LinearLayout>
 
                 </LinearLayout>

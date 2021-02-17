@@ -12,8 +12,11 @@ import android.graphics.drawable.Drawable;
 import android.os.Bundle;
 import android.util.Log;
 import android.view.DragEvent;
+import android.view.Gravity;
 import android.view.View;
+import android.widget.Button;
 import android.widget.ImageView;
+import android.widget.LinearLayout;
 import android.widget.ProgressBar;
 import android.widget.TextView;
 import android.widget.Toast;
@@ -32,24 +35,28 @@ import java.util.Date;
 import java.util.HashMap;
 import java.util.Locale;
 import java.util.Map;
+import java.util.Objects;
 
 public class MainActivity extends AppCompatActivity
         implements View.OnDragListener, View.OnLongClickListener {
 
     private static final String TAG = "MainActivity";
     private Resources r;
+
     private String uid;
     private String username;
     private long level, gold, currentStam, maxStam, currentExp, maxExp;
-    private ArrayList<Long> stats;
+    private Stats stats;
+    private Stats tempStats;
 
     private TextView usernameText, levelText, goldText, staminaText;
     private TextView atkText, defText, vitText, dmgText, luckText;
+    private ImageView avatar;
     private ProgressBar expBar;
     private FirebaseFirestore db;
     private JSONObject items;
 
-    private ImageView helm, gloves, chest, bracers, weapon, pants, offhand, boots;
+    private ImageView helm, gloves, chest, shoulder, weapon, pants, offhand, boots;
     private ArrayList<ImageView> bagImages;
     private ArrayList<String> bagSlots;
     private ArrayList<String> eqSlots;
@@ -60,7 +67,6 @@ public class MainActivity extends AppCompatActivity
         setContentView(R.layout.activity_main);
         db = FirebaseFirestore.getInstance();
         r = getResources();
-        stats = new ArrayList<>();
 
         Bundle extras = getIntent().getExtras();
         assert extras != null;
@@ -85,6 +91,7 @@ public class MainActivity extends AppCompatActivity
     }
 
     private void setViews() {
+        avatar = findViewById(R.id.avatar);
         usernameText = findViewById(R.id.username);
         levelText = findViewById(R.id.level);
         goldText = findViewById(R.id.infoGold);
@@ -103,7 +110,7 @@ public class MainActivity extends AppCompatActivity
         helm = findViewById(R.id.eq_helm);
         gloves = findViewById(R.id.eq_gloves);
         chest = findViewById(R.id.eq_chest);
-        bracers = findViewById(R.id.eq_bracers);
+        shoulder = findViewById(R.id.eq_shoulder);
         weapon = findViewById(R.id.eq_weapon);
         pants = findViewById(R.id.eq_pants);
         offhand = findViewById(R.id.eq_offhand);
@@ -125,11 +132,7 @@ public class MainActivity extends AppCompatActivity
         currentExp = extras.getLong("currentExp");
         maxExp = extras.getLong("maxExp");
 
-        stats.add(extras.getLong("atk"));
-        stats.add(extras.getLong("def"));
-        stats.add(extras.getLong("vit"));
-        stats.add(extras.getLong("dmg"));
-        stats.add(extras.getLong("luck"));
+        stats = (Stats) extras.getSerializable("stats");
 
         bagSlots = extras.getStringArrayList("bagSlots");
         eqSlots = extras.getStringArrayList("eqSlots");
@@ -137,6 +140,7 @@ public class MainActivity extends AppCompatActivity
 
     @SuppressLint("SetTextI18n")
     private void updateUI() {
+        avatar.setImageResource(R.drawable.app_icon);
         usernameText.setText(username);
         levelText.setText(String.format(Locale.ENGLISH, "%,d", level));
         goldText.setText(String.format(Locale.ENGLISH, "%,d", gold));
@@ -145,14 +149,33 @@ public class MainActivity extends AppCompatActivity
         expBar.setMax((int) maxExp);
         expBar.setProgress((int) currentExp);
 
-        atkText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(0)));
-        defText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(1)));
-        vitText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(2)));
-        dmgText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(3)));
-        luckText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(4)));
+        atkText.setText(String.format(Locale.ENGLISH, "%,d", stats.atk));
+        defText.setText(String.format(Locale.ENGLISH, "%,d", stats.def));
+        vitText.setText(String.format(Locale.ENGLISH, "%,d", stats.vit));
+        dmgText.setText(String.format(Locale.ENGLISH, "%,d", stats.dmgMin)
+                + "-"
+                + String.format(Locale.ENGLISH, "%,d", stats.dmgMax));
+        luckText.setText(String.format(Locale.ENGLISH, "%,d", stats.luck));
+
+        if  (stats.unspentPts > 0) {
+            ((TextView)findViewById(R.id.statsPoints)).setText(
+                    String.valueOf(stats.unspentPts));
+            findViewById(R.id.statsNrLayout).setVisibility(View.VISIBLE);
+
+            findViewById(R.id.statsAtkPlus).setVisibility(View.VISIBLE);
+            findViewById(R.id.statsDefPlus).setVisibility(View.VISIBLE);
+            findViewById(R.id.statsVitPlus).setVisibility(View.VISIBLE);
+            findViewById(R.id.statsLuckPlus).setVisibility(View.VISIBLE);
+
+            try {
+                tempStats = (Stats)stats.clone();
+            } catch (CloneNotSupportedException e) {
+                e.printStackTrace();
+            }
+        }
+
 
         String id = eqSlots.get(0);
-
         if (!id.equals("0")) {
             helm.setImageResource(r.getIdentifier(
                     "item_" + id, "drawable", getPackageName()));
@@ -175,9 +198,9 @@ public class MainActivity extends AppCompatActivity
 
         id = eqSlots.get(3);
         if (!id.equals("0")) {
-            bracers.setImageResource(r.getIdentifier(
+            shoulder.setImageResource(r.getIdentifier(
                     "item_" + id, "drawable", getPackageName()));
-            bracers.setTag("item_" + id);
+            shoulder.setTag("item_" + id);
         }
 
         id = eqSlots.get(4);
@@ -236,16 +259,16 @@ public class MainActivity extends AppCompatActivity
                 long diff = currentTime.toDate().getTime() - serverTime.toDate().getTime();
                 long mins = diff / 1000 / 60;
                 long secs = diff / 1000 % 60;
-                Log.e(TAG, "Timer: " + mins + ":" + secs);
+                //Log.e(TAG, "Timer: " + mins + ":" + secs);
 
-                // Get 1 tick of stamina every 5 min //
-                long ticks = mins / 5;
+                // Get 10 Stamina / 15 min //
+                long ticks = mins / 15;
 
                 if (ticks > 0) {
-                    currentStam = (currentStam + ticks * 15 > maxStam) ?
-                            maxStam : currentStam + ticks * 15;
-                    staminaText.setText(String.format(Locale.ENGLISH, "%,d", currentStam) + "/"
-                            + String.format(Locale.ENGLISH, "%,d", maxStam));
+                    currentStam = (currentStam + ticks * 10 > maxStam) ?
+                            maxStam : currentStam + ticks * 10;
+                    staminaText.setText(String.format(Locale.ENGLISH,"%,d", currentStam) + "/"
+                            + String.format(Locale.ENGLISH,"%,d", maxStam));
 
                     db.collection("users").document(uid)
                             .update("currentStamina", currentStam)
@@ -266,30 +289,41 @@ public class MainActivity extends AppCompatActivity
         });
     }
 
+    @SuppressLint("SetTextI18n")
     private void updateStats(Item newItem, Item removedItem) {
         // Decrease stats upon removing item //
         if (removedItem != null) {
-            stats.set(0, stats.get(0) - removedItem.atk);
-            stats.set(1, stats.get(1) - removedItem.def);
-            stats.set(2, stats.get(2) - removedItem.vit);
-            stats.set(3, stats.get(3) - removedItem.dmg);
-            stats.set(4, stats.get(4) - removedItem.luck);
+            stats.atk -= removedItem.atk;
+            stats.def -= removedItem.def;
+            stats.vit -= removedItem.vit;
+            stats.dmgMin -= removedItem.dmgMin;
+            stats.dmgMax -= removedItem.dmgMax;
+            stats.luck-= removedItem.luck;
         }
 
         // Add stats upon adding item //
         if (newItem != null) {
-            stats.set(0, stats.get(0) + newItem.atk);
-            stats.set(1, stats.get(1) + newItem.def);
-            stats.set(2, stats.get(2) + newItem.vit);
-            stats.set(3, stats.get(3) + newItem.dmg);
-            stats.set(4, stats.get(4) + newItem.luck);
+            stats.atk += newItem.atk;
+            stats.def += newItem.def;
+            stats.vit += newItem.vit;
+            stats.dmgMin += newItem.dmgMin;
+            stats.dmgMax += newItem.dmgMax;
+            stats.luck += newItem.luck;
         }
 
-        atkText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(0)));
-        defText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(1)));
-        vitText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(2)));
-        dmgText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(3)));
-        luckText.setText(String.format(Locale.ENGLISH, "%,d", stats.get(4)));
+        atkText.setText(String.format(Locale.ENGLISH, "%,d", stats.atk));
+        defText.setText(String.format(Locale.ENGLISH, "%,d", stats.def));
+        vitText.setText(String.format(Locale.ENGLISH, "%,d", stats.vit));
+        dmgText.setText(String.format(Locale.ENGLISH, "%,d", stats.dmgMin)
+                + "-"
+                + String.format(Locale.ENGLISH, "%,d", stats.dmgMax));
+        luckText.setText(String.format(Locale.ENGLISH, "%,d", stats.luck));
+
+        try {
+            tempStats = (Stats) stats.clone();
+        } catch (CloneNotSupportedException e) {
+            e.printStackTrace();
+        }
     }
 
     private void setMenuButtons() {
@@ -319,11 +353,7 @@ public class MainActivity extends AppCompatActivity
                 intent.putExtra("maxStamina", maxStam);
                 intent.putExtra("currentExp", currentExp);
                 intent.putExtra("maxExp", maxExp);
-                intent.putExtra("atk", stats.get(0));
-                intent.putExtra("def", stats.get(1));
-                intent.putExtra("vit", stats.get(2));
-                intent.putExtra("dmg", stats.get(3));
-                intent.putExtra("luck", stats.get(4));
+                intent.putExtra("stats", stats);
                 intent.putStringArrayListExtra("bagSlots", bagSlots);
                 intent.putStringArrayListExtra("eqSlots", eqSlots);
                 startActivity(intent);
@@ -342,9 +372,9 @@ public class MainActivity extends AppCompatActivity
         findViewById(R.id.eq_chest).setOnLongClickListener(this);
         findViewById(R.id.eq_chest).setOnDragListener(this);
         findViewById(R.id.eq_chest).setOnClickListener(this::openTooltipListener);
-        findViewById(R.id.eq_bracers).setOnLongClickListener(this);
-        findViewById(R.id.eq_bracers).setOnDragListener(this);
-        findViewById(R.id.eq_bracers).setOnClickListener(this::openTooltipListener);
+        findViewById(R.id.eq_shoulder).setOnLongClickListener(this);
+        findViewById(R.id.eq_shoulder).setOnDragListener(this);
+        findViewById(R.id.eq_shoulder).setOnClickListener(this::openTooltipListener);
         findViewById(R.id.eq_pants).setOnLongClickListener(this);
         findViewById(R.id.eq_pants).setOnDragListener(this);
         findViewById(R.id.eq_pants).setOnClickListener(this::openTooltipListener);
@@ -473,7 +503,8 @@ public class MainActivity extends AppCompatActivity
                 if (!targetType.equals(ownerItem.type)) {
                     Toast.makeText(this, "Can't equip item in that slot.", Toast.LENGTH_SHORT).show();
                     return;
-                } else if (ownerItem.lvlReq > level) {
+                }
+                else if (ownerItem.lvlReq > level) {
                     Toast.makeText(this, "Level requirement not met.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -496,7 +527,8 @@ public class MainActivity extends AppCompatActivity
                 if (!ownerItem.type.equals(targetItem.type)) {
                     Toast.makeText(this, "Can't equip item in that slot.", Toast.LENGTH_SHORT).show();
                     return;
-                } else if (ownerItem.lvlReq > level) {
+                }
+                else if (ownerItem.lvlReq > level) {
                     Toast.makeText(this, "Level requirement not met.", Toast.LENGTH_SHORT).show();
                     return;
                 }
@@ -577,6 +609,9 @@ public class MainActivity extends AppCompatActivity
 
         Item item = new Item(viewTag.substring(5), items);
 
+        // Set Bag Slot ID //
+        ((TextView)findViewById(R.id.itemBagSlot)).setText(viewId);
+
         // Set Avatar //
         ((ImageView) findViewById(R.id.itemTooltipAvatar)).
                 setImageResource(r.getIdentifier(item.avatar, "drawable", getPackageName()));
@@ -639,9 +674,9 @@ public class MainActivity extends AppCompatActivity
         } else
             findViewById(R.id.itemTooltipVitLayout).setVisibility(View.GONE);
 
-        if (item.dmg > 0) {
+        if (item.dmgMin > 0 && item.dmgMax > 0) {
             findViewById(R.id.itemTooltipDmgLayout).setVisibility(View.VISIBLE);
-            ((TextView) findViewById(R.id.itemTooltipDmg)).setText("+" + item.dmg);
+            ((TextView) findViewById(R.id.itemTooltipDmg)).setText(item.dmgMin + "-" + item.dmgMax);
         } else
             findViewById(R.id.itemTooltipDmgLayout).setVisibility(View.GONE);
 
@@ -652,10 +687,19 @@ public class MainActivity extends AppCompatActivity
             findViewById(R.id.itemTooltipLuckLayout).setVisibility(View.GONE);
 
         // Show Sell Button if Bag Item //
-        if (viewId.substring(0, 3).equals("bag"))
+        if (viewId.substring(0, 3).equals("bag")) {
+            TextView sellPrice = findViewById(R.id.itemPriceValue);
+            sellPrice.setText(String.valueOf(item.sellPrice));
+            sellPrice.setVisibility(View.VISIBLE);
+
+            findViewById(R.id.itemPriceIcon).setVisibility(View.VISIBLE);
             findViewById(R.id.itemTooltipSell).setVisibility(View.VISIBLE);
-        else
+        }
+        else {
+            findViewById(R.id.itemPriceValue).setVisibility(View.GONE);
+            findViewById(R.id.itemPriceIcon).setVisibility(View.GONE);
             findViewById(R.id.itemTooltipSell).setVisibility(View.GONE);
+        }
 
 
         findViewById(R.id.itemTooltipLayout).setVisibility(View.VISIBLE);
@@ -668,6 +712,137 @@ public class MainActivity extends AppCompatActivity
     }
 
     public void sellItemListener(View view) {
-        Toast.makeText(this, "Selling item.", Toast.LENGTH_SHORT).show();
+        AlertDialog alertDialog = new AlertDialog.Builder(this).create();
+        alertDialog.setMessage("Confirm Sell?");
+        alertDialog.setButton(AlertDialog.BUTTON_POSITIVE, "Yes", (dialog, which) -> {
+            String slotId = (((TextView)findViewById(R.id.itemBagSlot)).getText().toString());
+            ImageView bagSlot = findViewById(r.getIdentifier(slotId, "id", getPackageName()));
+
+            gold += Long.valueOf(
+                    ((TextView)findViewById(R.id.itemPriceValue)).getText().toString());
+            goldText.setText(String.format(Locale.ENGLISH, "%,d", gold));
+
+            bagSlot.setTag("null");
+            bagSlot.setImageResource(r.getIdentifier(
+                    "main_inventory_cell", "drawable", getPackageName()));
+            bagSlots.set(Integer.valueOf(slotId.substring(8)), "0");
+
+            findViewById(R.id.itemTooltipLayout).setVisibility(View.GONE);
+
+            Map<String, Object> data = new HashMap<>();
+            data.put("gold", gold);
+            data.put("bagSlots", bagSlots);
+
+            db.collection("users").document(uid)
+                    .update(data)
+                    .addOnFailureListener(e -> Log.w(TAG, "Error writing document.", e));
+        });
+
+        alertDialog.setButton(AlertDialog.BUTTON_NEGATIVE, "No",
+                (dialog, which) -> dialog.cancel());
+        alertDialog.show();
+        Objects.requireNonNull(alertDialog.getWindow()).setLayout(800, 400);
+
+        Button btnPositive = alertDialog.getButton(AlertDialog.BUTTON_POSITIVE);
+        Button btnNegative = alertDialog.getButton(AlertDialog.BUTTON_NEGATIVE);
+        TextView msg = alertDialog.findViewById(android.R.id.message);
+        assert msg != null;
+        msg.setTextSize(18);
+        msg.setGravity(Gravity.CENTER);
+
+        LinearLayout.LayoutParams btnParams =
+                (LinearLayout.LayoutParams) btnPositive.getLayoutParams();
+        btnParams.weight = 10;
+        btnPositive.setLayoutParams(btnParams);
+        btnNegative.setLayoutParams(btnParams);
+    }
+
+    public void statAllocListener(View view) {
+        // Display Apply & Reset on first press //
+        if (tempStats.unspentPts.equals(stats.unspentPts))
+            findViewById(R.id.statsButtonsLayout).setVisibility(View.VISIBLE);
+
+        switch (view.getId()) {
+            case R.id.statsAtkPlus:
+                tempStats.atk++;
+
+                atkText.setText(String.format(Locale.ENGLISH, "%,d", tempStats.atk));
+                break;
+
+            case R.id.statsDefPlus:
+                tempStats.def++;
+
+                defText.setText(String.format(Locale.ENGLISH, "%,d", tempStats.def));
+                break;
+
+            case R.id.statsVitPlus:
+                tempStats.vit++;
+
+                vitText.setText(String.format(Locale.ENGLISH, "%,d", tempStats.vit));
+                break;
+
+            case R.id.statsLuckPlus:
+                tempStats.luck++;
+
+                luckText.setText(String.format(Locale.ENGLISH, "%,d", tempStats.luck));
+                break;
+
+            case R.id.statsApply:
+                if (tempStats.unspentPts.equals(stats.unspentPts)) return;
+
+                stats.atk = tempStats.atk;
+                stats.def = tempStats.def;
+                stats.vit = tempStats.vit;
+                stats.luck = tempStats.luck;
+                stats.unspentPts = tempStats.unspentPts;
+
+                if (stats.unspentPts <= 0)
+                    findViewById(R.id.statsNrLayout).setVisibility(View.GONE);
+
+                findViewById(R.id.statsButtonsLayout).setVisibility(View.GONE);
+
+                db.collection("users").document(uid)
+                        .update("stats", stats)
+                        .addOnFailureListener(e -> Log.w(TAG, "Error writing document.", e));
+
+                return;
+
+            case R.id.statsReset:
+                if (tempStats.unspentPts.equals(stats.unspentPts)) return;
+
+                atkText.setText(String.format(Locale.ENGLISH, "%,d", stats.atk));
+                defText.setText(String.format(Locale.ENGLISH, "%,d", stats.def));
+                vitText.setText(String.format(Locale.ENGLISH, "%,d", stats.vit));
+                luckText.setText(String.format(Locale.ENGLISH, "%,d", stats.luck));
+
+                if (tempStats.unspentPts <= 0) {
+                    findViewById(R.id.statsAtkPlus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.statsDefPlus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.statsVitPlus).setVisibility(View.VISIBLE);
+                    findViewById(R.id.statsLuckPlus).setVisibility(View.VISIBLE);
+                }
+
+                ((TextView)findViewById(R.id.statsPoints)).setText(
+                        String.valueOf(stats.unspentPts));
+
+                try {
+                    tempStats = (Stats)stats.clone();
+                } catch (CloneNotSupportedException e) {
+                    e.printStackTrace();
+                }
+
+                return;
+        }
+
+        tempStats.unspentPts--;
+        ((TextView)findViewById(R.id.statsPoints)).setText(
+                String.valueOf(tempStats.unspentPts));
+
+        if (tempStats.unspentPts <= 0) {
+            findViewById(R.id.statsAtkPlus).setVisibility(View.GONE);
+            findViewById(R.id.statsDefPlus).setVisibility(View.GONE);
+            findViewById(R.id.statsVitPlus).setVisibility(View.GONE);
+            findViewById(R.id.statsLuckPlus).setVisibility(View.GONE);
+        }
     }
 }

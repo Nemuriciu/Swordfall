@@ -1,5 +1,10 @@
 package com.Nemuriciu.Swordfall;
 
+import org.json.JSONArray;
+import org.json.JSONException;
+
+import java.util.ArrayList;
+
 class Creature {
 
     private int id;
@@ -12,6 +17,8 @@ class Creature {
     int minExp, maxExp;
     int minGold, maxGold;
     String name, avatar;
+    ArrayList<String> items;
+    ArrayList<Double> drops;
 
     Creature(int id, int level, String name, String avatar,
              int minHp, int maxHp, int minAtk, int maxAtk,
@@ -36,5 +43,20 @@ class Creature {
         this.maxExp = maxExp;
         this.minGold = minGold;
         this.maxGold = maxGold;
+        //this.items = new ArrayList<>();
+        //this.drops = new ArrayList<>();
+
+        /*
+        for (int i = 0; i < items.length(); i++) {
+            try {
+                this.items.add(items.getString(i));
+                this.drops.add(drops.getDouble(i));
+            } catch (JSONException e) {
+                e.printStackTrace();
+            }
+        }
+        */
+
+
     }
 }

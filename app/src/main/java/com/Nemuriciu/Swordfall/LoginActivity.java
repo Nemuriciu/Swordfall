@@ -15,8 +15,8 @@ import com.google.firebase.firestore.DocumentReference;
 import com.google.firebase.firestore.DocumentSnapshot;
 import com.google.firebase.firestore.FirebaseFirestore;
 
+import java.io.Serializable;
 import java.util.ArrayList;
-import java.util.List;
 import java.util.Objects;
 
 import androidx.appcompat.app.AlertDialog;
@@ -55,6 +55,7 @@ public class LoginActivity extends AppCompatActivity {
                         Intent intent;
                         if (res) {
                             intent = new Intent(this, MainActivity.class);
+                            Stats stats = doc.get("stats", Stats.class);
 
                             intent.putExtra("username", (String)doc.get("username"));
                             intent.putExtra("level", (long)doc.get("level"));
@@ -63,16 +64,7 @@ public class LoginActivity extends AppCompatActivity {
                             intent.putExtra("maxStamina", (long)doc.get("maxStamina"));
                             intent.putExtra("currentExp", (long)doc.get("currentExp"));
                             intent.putExtra("maxExp", (long)doc.get("maxExp"));
-                            intent.putExtra("atk", (long) ((List) Objects.
-                                    requireNonNull(doc.get("stats"))).get(0));
-                            intent.putExtra("def", (long) ((List) Objects.
-                                    requireNonNull(doc.get("stats"))).get(1));
-                            intent.putExtra("vit", (long) ((List) Objects.
-                                    requireNonNull(doc.get("stats"))).get(2));
-                            intent.putExtra("dmg", (long) ((List) Objects.
-                                    requireNonNull(doc.get("stats"))).get(3));
-                            intent.putExtra("luck", (long) ((List) Objects.
-                                    requireNonNull(doc.get("stats"))).get(4));
+                            intent.putExtra("stats", stats);
                             intent.putStringArrayListExtra("eqSlots",
                                     (ArrayList<String>) doc.get("eqSlots"));
                             intent.putStringArrayListExtra("bagSlots",
@@ -151,6 +143,7 @@ public class LoginActivity extends AppCompatActivity {
                                                 Intent intent;
                                                 if (res) {
                                                     intent = new Intent(this, MainActivity.class);
+                                                    Stats stats = doc.get("stats", Stats.class);
 
                                                     intent.putExtra("username", (String)doc.get("username"));
                                                     intent.putExtra("level", (long)doc.get("level"));
@@ -159,16 +152,7 @@ public class LoginActivity extends AppCompatActivity {
                                                     intent.putExtra("maxStamina", (long)doc.get("maxStamina"));
                                                     intent.putExtra("currentExp", (long)doc.get("currentExp"));
                                                     intent.putExtra("maxExp", (long)doc.get("maxExp"));
-                                                    intent.putExtra("atk", (long) ((List) Objects.
-                                                            requireNonNull(doc.get("stats"))).get(0));
-                                                    intent.putExtra("def", (long) ((List) Objects.
-                                                            requireNonNull(doc.get("stats"))).get(1));
-                                                    intent.putExtra("vit", (long) ((List) Objects.
-                                                            requireNonNull(doc.get("stats"))).get(2));
-                                                    intent.putExtra("dmg", (long) ((List) Objects.
-                                                            requireNonNull(doc.get("stats"))).get(3));
-                                                    intent.putExtra("luck", (long) ((List) Objects.
-                                                            requireNonNull(doc.get("stats"))).get(4));
+                                                    intent.putExtra("stats", stats);
                                                     intent.putStringArrayListExtra("eqSlots",
                                                             (ArrayList<String>) doc.get("eqSlots"));
                                                     intent.putStringArrayListExtra("bagSlots",

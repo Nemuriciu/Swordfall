@@ -25,7 +25,7 @@
                 android:id="@+id/avatar"
                 android:layout_width="match_parent"
                 android:layout_height="match_parent"
-                android:background="@drawable/app_icon" />
+                app:srcCompat="@drawable/app_icon" />
 
         </FrameLayout>
 
@@ -42,36 +42,36 @@
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="8dp"
-                android:fontFamily="@font/raleway_bold"
+                android:layout_marginTop="6dp"
+                android:fontFamily="@font/lato_bold"
                 android:shadowColor="@android:color/black"
                 android:shadowDx="1"
                 android:shadowDy="1"
                 android:shadowRadius="2"
                 android:text="Surubelnitoi1995"
-                android:textColor="#EA7500"
-                android:textSize="16sp" />
+                android:textSize="18sp" />
 
             <LinearLayout
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
                 android:layout_marginStart="12dp"
-                android:layout_marginTop="4dp"
+                android:layout_marginTop="2dp"
                 android:orientation="horizontal">
 
                 <TextView
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
+                    android:layout_gravity="center"
                     android:fontFamily="@font/lato_bold"
                     android:text="Level "
-                    android:textColor="#EA7500"
                     android:textSize="16sp" />
 
                 <TextView
                     android:id="@+id/level"
                     android:layout_width="wrap_content"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="4dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="2dp"
                     android:fontFamily="@font/lato_bold"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1"
@@ -79,8 +79,15 @@
                     android:shadowRadius="2"
                     android:text="50"
                     android:textAlignment="center"
-                    android:textColor="#EA7500"
                     android:textSize="16sp" />
+
+                <ImageView
+                    android:id="@+id/lvlUpIcon"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
+                    android:layout_gravity="center"
+                    android:visibility="gone"
+                    app:srcCompat="@drawable/icon_lvlup" />
 
             </LinearLayout>
 
@@ -94,9 +101,8 @@
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_marginTop="4dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
+                android:layout_marginTop="6dp"
                 android:orientation="horizontal">
 
                 <TextView
@@ -110,28 +116,25 @@
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
-                    android:text="2,500"
+                    android:text="2,500,000"
                     android:textAlignment="textEnd"
-                    android:textColor="#cccccc"
-                    android:textSize="12sp" />
+                    android:textColor="#E1E1E1"
+                    android:textSize="14sp" />
 
                 <ImageView
-                    android:layout_width="16dp"
-                    android:layout_height="16dp"
+                    android:layout_width="24dp"
+                    android:layout_height="24dp"
                     android:layout_gravity="center_vertical|end"
-                    android:layout_marginStart="10dp"
-                    android:layout_marginTop="4dp"
-                    android:layout_marginEnd="10dp"
-                    android:layout_marginBottom="4dp"
+                    android:layout_marginStart="6dp"
+                    android:layout_marginEnd="6dp"
                     android:layout_weight="0"
-                    android:background="@drawable/icon_gold_coin" />
+                    android:background="@drawable/icon_gold" />
 
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="0dp"
-                android:layout_weight="1"
+                android:layout_height="wrap_content"
                 android:orientation="horizontal">
 
                 <TextView
@@ -140,15 +143,15 @@
                     android:layout_height="wrap_content"
                     android:layout_gravity="center|end"
                     android:layout_weight="1"
-                    android:fontFamily="@font/lato"
+                    android:fontFamily="@font/lato_bold"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
-                    android:text="150/150"
+                    android:text="500/500"
                     android:textAlignment="textEnd"
                     android:textColor="#7EE6E2"
-                    android:textSize="12sp" />
+                    android:textSize="14sp" />
 
                 <ImageView
                     android:layout_width="24dp"
@@ -160,21 +163,6 @@
                     android:background="@drawable/icon_stamina" />
 
             </LinearLayout>
-
-            <TextView
-                android:id="@+id/staminaTimeCombat"
-                android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginEnd="36dp"
-                android:layout_marginBottom="2dp"
-                android:fontFamily="@font/lato"
-                android:shadowColor="@android:color/black"
-                android:shadowDx="1"
-                android:shadowDy="1"
-                android:shadowRadius="2"
-                android:textAlignment="textEnd"
-                android:textSize="8sp" />
-
         </LinearLayout>
 
     </LinearLayout>
@@ -249,35 +237,21 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="13dp"
-                            android:layout_marginTop="13dp"
-                            android:fontFamily="@font/lato_bold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
-                            android:text="Level 1-5"
-                            android:textColor="#02AC9A"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="9dp"
+                            android:layout_marginBottom="12dp"
                             android:fontFamily="@font/raleway_bold"
                             android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
                             android:text="Blighted Swamp"
                             android:textColor="#02AC9A"
                             android:textSize="16sp" />
+
                     </RelativeLayout>
+
                 </FrameLayout>
 
                 <FrameLayout
@@ -303,35 +277,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="13dp"
-                            android:layout_marginTop="13dp"
-                            android:fontFamily="@font/lato_bold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
-                            android:text="Level 5-10"
-                            android:textColor="#8BC34A"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="12dp"
                             android:fontFamily="@font/raleway_bold"
                             android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
                             android:text="Enchanted Groove"
                             android:textColor="#8BC34A"
                             android:textSize="16sp" />
                     </RelativeLayout>
+
                 </FrameLayout>
 
                 <FrameLayout
@@ -357,35 +316,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="13dp"
-                            android:layout_marginTop="13dp"
-                            android:fontFamily="@font/lato_bold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
-                            android:text="Level 10-15"
-                            android:textColor="#C5B31C"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="12dp"
                             android:fontFamily="@font/raleway_bold"
                             android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
                             android:text="The Wastelands"
                             android:textColor="#C5B31C"
                             android:textSize="16sp" />
                     </RelativeLayout>
+
                 </FrameLayout>
 
                 <FrameLayout
@@ -411,35 +355,20 @@
                         <TextView
                             android:layout_width="wrap_content"
                             android:layout_height="wrap_content"
-                            android:layout_alignParentStart="true"
-                            android:layout_alignParentTop="true"
-                            android:layout_marginStart="13dp"
-                            android:layout_marginTop="13dp"
-                            android:fontFamily="@font/lato_bold"
-                            android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
-                            android:text="Level 15-20"
-                            android:textColor="#2196F3"
-                            android:textSize="16sp" />
-
-                        <TextView
-                            android:layout_width="wrap_content"
-                            android:layout_height="wrap_content"
                             android:layout_alignParentEnd="true"
                             android:layout_alignParentBottom="true"
                             android:layout_marginEnd="12dp"
-                            android:layout_marginBottom="10dp"
+                            android:layout_marginBottom="12dp"
                             android:fontFamily="@font/raleway_bold"
                             android:shadowColor="@android:color/black"
-                            android:shadowDx="2"
-                            android:shadowDy="2"
-                            android:shadowRadius="3"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
                             android:text="Frozen Cemetery"
                             android:textColor="#2196F3"
                             android:textSize="16sp" />
                     </RelativeLayout>
+
                 </FrameLayout>
 
             </LinearLayout>
@@ -542,45 +471,60 @@
                 android:layout_width="wrap_content"
                 android:layout_height="0dp"
                 android:layout_gravity="center"
-                android:layout_marginStart="16dp"
+                android:layout_marginStart="20dp"
                 android:layout_marginTop="16dp"
-                android:layout_marginEnd="16dp"
+                android:layout_marginEnd="20dp"
                 android:layout_weight=".07">
+
+                <Button
+                    android:id="@+id/mobListGoBackButton"
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:background="@drawable/combat_button_image"
+                    android:fontFamily="@font/raleway_semibold"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:text="Go Back"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/mobListAdvanceButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/combat_button_image"
                     android:fontFamily="@font/raleway_semibold"
-                    android:onClick="mobListClickListener"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="Advance"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
 
                 <Button
                     android:id="@+id/mobListRefreshButton"
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
                     android:layout_gravity="center"
-                    android:layout_marginStart="24dp"
+                    android:layout_marginStart="20dp"
                     android:layout_weight="1"
                     android:background="@drawable/combat_button_image"
                     android:fontFamily="@font/raleway_semibold"
-                    android:onClick="mobListClickListener"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1"
                     android:shadowDy="1"
                     android:shadowRadius="2"
                     android:text="Refresh"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
 
             </LinearLayout>
 
@@ -601,18 +545,30 @@
                     android:text="( -1 )"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="#7EE6E2"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
 
                 <TextView
                     android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_marginStart="90dp"
+                    android:layout_marginStart="82dp"
+                    android:layout_marginEnd="4dp"
                     android:layout_weight="1"
                     android:fontFamily="@font/lato_bold"
-                    android:text="( -1 )"
+                    android:text="( -2 )"
                     android:textAppearance="@style/TextAppearance.AppCompat.Body1"
                     android:textColor="#7EE6E2"
-                    android:textSize="11sp" />
+                    android:textSize="12sp" />
+
+                <TextView
+                    android:layout_width="0dp"
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="80dp"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/lato_bold"
+                    android:text="( -2 )"
+                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                    android:textColor="#7EE6E2"
+                    android:textSize="12sp" />
             </LinearLayout>
 
         </LinearLayout>
@@ -621,65 +577,68 @@
             android:id="@+id/mobCombatLayout"
             android:layout_width="match_parent"
             android:layout_height="match_parent"
-            android:layout_marginStart="24dp"
-            android:layout_marginTop="24dp"
-            android:layout_marginEnd="24dp"
-            android:layout_marginBottom="24dp"
+            android:layout_marginStart="16dp"
+            android:layout_marginTop="8dp"
+            android:layout_marginEnd="16dp"
+            android:layout_marginBottom="8dp"
             android:background="@drawable/combat_zone_background"
             android:orientation="vertical"
             android:visibility="gone"
             android:weightSum="1">
 
-            <RelativeLayout
+            <TextView
                 android:layout_width="wrap_content"
                 android:layout_height="wrap_content"
-                android:layout_marginStart="12dp"
+                android:layout_gravity="center"
                 android:layout_marginTop="12dp"
+                android:fontFamily="@font/raleway_bold"
+                android:shadowColor="@android:color/black"
+                android:shadowDx="1.5"
+                android:shadowDy="1.5"
+                android:shadowRadius="3"
+                android:text="Combat"
+                android:textColor="#a88946"
+                android:textSize="16sp" />
+
+            <LinearLayout
+                android:layout_width="match_parent"
+                android:layout_height="wrap_content"
+                android:layout_marginStart="12dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="12dp"
-                android:layout_marginBottom="12dp">
+                android:layout_marginBottom="4dp"
+                android:orientation="horizontal">
 
                 <TextView
-                    android:id="@+id/mobCombatTitle"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/combatNamePlayer"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="8dp"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
                     android:fontFamily="@font/raleway_semibold"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1.5"
                     android:shadowDy="1.5"
                     android:shadowRadius="3"
-                    android:text="Combat View"
+                    android:text="Surubelnitoi1995"
                     android:textAlignment="center"
-                    android:textSize="18sp" />
+                    android:textSize="12sp" />
 
                 <TextView
-                    android:id="@+id/mobCombatResult"
-                    android:layout_width="wrap_content"
+                    android:id="@+id/combatNameEnemy"
+                    android:layout_width="0dp"
                     android:layout_height="wrap_content"
-                    android:layout_below="@id/mobCombatTitle"
-                    android:layout_centerHorizontal="true"
-                    android:layout_marginTop="6dp"
-                    android:fontFamily="@font/raleway_medium"
+                    android:layout_gravity="center"
+                    android:layout_weight="1"
+                    android:fontFamily="@font/raleway_semibold"
                     android:shadowColor="@android:color/black"
                     android:shadowDx="1.5"
                     android:shadowDy="1.5"
                     android:shadowRadius="3"
-                    android:text="Victory"
+                    android:text="Ferocious Arachnid"
                     android:textAlignment="center"
-                    android:textColor="#4CAF50"
-                    android:textSize="16sp" />
-
-                <ImageView
-                    android:id="@+id/mobCombatClose"
-                    android:layout_width="30dp"
-                    android:layout_height="30dp"
-                    android:layout_alignParentTop="true"
-                    android:layout_alignParentEnd="true"
-                    android:onClick="exitZoneClickListener"
-                    app:srcCompat="@drawable/close_icon" />
-
-            </RelativeLayout>
+                    android:textSize="12sp" />
+            </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
@@ -688,161 +647,667 @@
                 android:layout_marginEnd="24dp"
                 android:layout_weight=".35">
 
-                <ImageView
-                    android:id="@+id/mobCombatPlayerAvatar"
+                <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1" />
+                    android:layout_height="match_parent"
+                    android:layout_weight="1">
 
-                <ImageView
-                    android:id="@+id/mobCombatMobAvatar"
+                    <ImageView
+                        android:id="@+id/combatAvatarPlayer"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/app_icon" />
+
+                    <TextView
+                        android:id="@+id/combatHitPlayer"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/titillium_web"
+                        android:shadowColor="@android:color/black"
+                        android:shadowDx="1.5"
+                        android:shadowDy="1.5"
+                        android:shadowRadius="3"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="50sp" />
+                </FrameLayout>
+
+                <FrameLayout
                     android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1" />
+                    android:layout_height="match_parent"
+                    android:layout_marginStart="18dp"
+                    android:layout_weight="1">
+
+                    <ImageView
+                        android:id="@+id/combatAvatarEnemy"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/avatar_swamp_arachnid" />
+
+                    <TextView
+                        android:id="@+id/combatHitEnemy"
+                        android:layout_width="wrap_content"
+                        android:layout_height="wrap_content"
+                        android:layout_gravity="center"
+                        android:fontFamily="@font/titillium_web"
+                        android:shadowColor="@android:color/black"
+                        android:shadowDx="1.5"
+                        android:shadowDy="1.5"
+                        android:shadowRadius="3"
+                        android:textAllCaps="false"
+                        android:textColor="@android:color/white"
+                        android:textSize="50sp" />
+
+                </FrameLayout>
+
             </LinearLayout>
 
             <LinearLayout
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
-                android:layout_marginStart="24dp"
-                android:layout_marginTop="6dp"
-                android:layout_marginEnd="24dp"
-                android:layout_weight=".05"
+                android:layout_marginStart="32dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="32dp"
+                android:layout_marginBottom="8dp"
+                android:layout_weight=".1"
                 android:baselineAligned="false"
                 android:orientation="horizontal">
 
-                <FrameLayout
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <ProgressBar
-                        android:id="@+id/mobCombatPlayerHp"
-                        style="@android:style/Widget.ProgressBar.Horizontal"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:max="100"
-                        android:progress="100"
-                        android:progressTint="@android:color/holo_red_dark" />
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/mobCombatPlayerHpText"
+                        <ProgressBar
+                            android:id="@+id/combatPlayerHp"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:max="100"
+                            android:progress="100"
+                            android:progressTint="@android:color/holo_red_dark" />
+
+                        <TextView
+                            android:id="@+id/combatPlayerHpText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="100 / 100"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="10sp" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/lato_bold"
-                        android:shadowColor="@android:color/black"
-                        android:shadowDx="1"
-                        android:shadowDy="1"
-                        android:shadowRadius="2"
-                        android:text="100 / 100"
-                        android:textAlignment="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textSize="10sp" />
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1">
 
-                </FrameLayout>
+                        <ProgressBar
+                            android:id="@+id/combatPlayerMana"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:max="100"
+                            android:progress="100"
+                            android:progressTint="@color/design_default_color_primary_dark" />
 
-                <FrameLayout
+                        <TextView
+                            android:id="@+id/combatPlayerManaText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="100 / 100"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textSize="10sp" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
+
+                <LinearLayout
                     android:layout_width="0dp"
-                    android:layout_height="match_parent"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1">
+                    android:layout_height="wrap_content"
+                    android:layout_marginStart="24dp"
+                    android:layout_weight="1"
+                    android:orientation="vertical">
 
-                    <ProgressBar
-                        android:id="@+id/mobCombatMobHp"
-                        style="@android:style/Widget.ProgressBar.Horizontal"
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="match_parent"
-                        android:max="100"
-                        android:progress="60"
-                        android:progressTint="@android:color/holo_red_dark" />
+                        android:layout_height="0dp"
+                        android:layout_weight="1">
 
-                    <TextView
-                        android:id="@+id/mobCombatMobHpText"
+                        <ProgressBar
+                            android:id="@+id/combatEnemyHp"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:max="100"
+                            android:progress="60"
+                            android:progressTint="@android:color/holo_red_dark" />
+
+                        <TextView
+                            android:id="@+id/combatEnemyHpText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="60 / 100"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                    </FrameLayout>
+
+                    <FrameLayout
                         android:layout_width="match_parent"
-                        android:layout_height="wrap_content"
-                        android:layout_gravity="center"
-                        android:fontFamily="@font/lato_bold"
-                        android:shadowColor="@android:color/black"
-                        android:shadowDx="1"
-                        android:shadowDy="1"
-                        android:shadowRadius="2"
-                        android:text="60 / 100"
-                        android:textAlignment="center"
-                        android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                        android:textColor="#FFFFFF"
-                        android:textSize="10sp" />
+                        android:layout_height="0dp"
+                        android:layout_marginTop="4dp"
+                        android:layout_weight="1">
 
-                </FrameLayout>
+                        <ProgressBar
+                            android:id="@+id/combatEnemyMana"
+                            style="@android:style/Widget.ProgressBar.Horizontal"
+                            android:layout_width="match_parent"
+                            android:layout_height="match_parent"
+                            android:max="100"
+                            android:progress="60"
+                            android:progressTint="@color/design_default_color_primary_dark" />
+
+                        <TextView
+                            android:id="@+id/combatEnemyManaText"
+                            android:layout_width="match_parent"
+                            android:layout_height="wrap_content"
+                            android:layout_gravity="center"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="60 / 100"
+                            android:textAlignment="center"
+                            android:textAppearance="@style/TextAppearance.AppCompat.Body1"
+                            android:textColor="#FFFFFF"
+                            android:textSize="10sp" />
+
+                    </FrameLayout>
+
+                </LinearLayout>
 
             </LinearLayout>
 
             <ScrollView
+                android:id="@+id/combatLogScroll"
                 android:layout_width="match_parent"
                 android:layout_height="0dp"
                 android:layout_marginStart="32dp"
-                android:layout_marginTop="16dp"
+                android:layout_marginTop="8dp"
                 android:layout_marginEnd="32dp"
-                android:layout_weight=".6">
+                android:layout_marginBottom="8dp"
+                android:layout_weight=".275">
 
                 <LinearLayout
-                    android:id="@+id/mobCombatLog"
+                    android:id="@+id/combatLog"
                     android:layout_width="match_parent"
                     android:layout_height="wrap_content"
                     android:orientation="vertical" />
             </ScrollView>
 
+            <RelativeLayout
+                android:id="@+id/mobCombatDropLayout"
+                android:layout_width="match_parent"
+                android:layout_height="0dp"
+                android:layout_weight="1"
+                android:visibility="gone">
+
+                <ImageView
+                    android:id="@+id/mobCombatItemAvatar"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="4dp"
+                    android:layout_toStartOf="@id/mobCombatItemDrop"
+                    android:textAlignment="center"
+                    app:srcCompat="@drawable/icon_offhand" />
+
+                <TextView
+                    android:id="@+id/mobCombatItemDrop"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_centerInParent="true"
+                    android:fontFamily="@font/lato_bold"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:textAlignment="center"
+                    android:textColor="#4CAF50"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/mobCombatBagSlots"
+                    android:layout_width="wrap_content"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentEnd="true"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="8dp"
+                    android:fontFamily="@font/lato_bold"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:textSize="11sp" />
+
+                <ImageView
+                    android:layout_width="18dp"
+                    android:layout_height="18dp"
+                    android:layout_centerVertical="true"
+                    android:layout_marginEnd="2dp"
+                    android:layout_toStartOf="@id/mobCombatBagSlots"
+                    app:srcCompat="@drawable/icon_bag" />
+            </RelativeLayout>
+
             <LinearLayout
                 android:layout_width="match_parent"
-                android:layout_height="wrap_content"
-                android:layout_marginStart="42dp"
-                android:layout_marginTop="16dp"
-                android:layout_marginEnd="42dp"
-                android:layout_marginBottom="24dp"
-                android:orientation="horizontal">
+                android:layout_height="0dp"
+                android:layout_marginStart="40dp"
+                android:layout_marginTop="8dp"
+                android:layout_marginEnd="40dp"
+                android:layout_marginBottom="18dp"
+                android:layout_weight=".275"
+                android:orientation="vertical">
 
-                <TextView
-                    android:id="@+id/mobCombatExp"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_weight="1"
-                    android:background="@drawable/combat_frame_background_tight"
-                    android:fontFamily="@font/lato_bold"
-                    android:gravity="center"
-                    android:shadowColor="@android:color/black"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"
-                    android:text="16,560 Exp"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="#EA7D00"
-                    android:textSize="12sp" />
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_weight=".35"
+                    android:orientation="horizontal">
 
-                <TextView
-                    android:id="@+id/mobCombatGold"
-                    android:layout_width="0dp"
-                    android:layout_height="wrap_content"
-                    android:layout_marginStart="16dp"
-                    android:layout_weight="1"
-                    android:background="@drawable/combat_frame_background_tight"
-                    android:fontFamily="@font/lato_bold"
-                    android:gravity="center"
-                    android:shadowColor="@android:color/black"
-                    android:shadowDx="1"
-                    android:shadowDy="1"
-                    android:shadowRadius="2"
-                    android:text="256,734 Gold"
-                    android:textAlignment="center"
-                    android:textAllCaps="false"
-                    android:textAppearance="@style/TextAppearance.AppCompat.Body1"
-                    android:textColor="#FFC107"
-                    android:textSize="12sp" />
+                    <Button
+                        android:id="@+id/combatButtonAtk"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        android:background="@drawable/combat_button_image"
+                        android:fontFamily="@font/raleway_semibold"
+                        android:onClick="combatClickListener"
+                        android:text="Attack"
+                        android:textSize="10sp" />
+
+                    <Button
+                        android:id="@+id/combatButtonCast"
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="32dp"
+                        android:layout_weight="1"
+                        android:background="@drawable/combat_button_image"
+                        android:fontFamily="@font/raleway_semibold"
+                        android:onClick="combatClickListener"
+                        android:text="Cast"
+                        android:textSize="10sp" />
+                </LinearLayout>
+
+                <LinearLayout
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="60dp"
+                    android:layout_marginTop="12dp"
+                    android:layout_marginEnd="60dp"
+                    android:layout_marginBottom="12dp"
+                    android:layout_weight=".35"
+                    android:orientation="horizontal">
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/skill_1" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/skill_2" />
+
+                    <ImageView
+                        android:layout_width="0dp"
+                        android:layout_height="wrap_content"
+                        android:layout_marginStart="8dp"
+                        android:layout_weight="1"
+                        app:srcCompat="@drawable/skill_3" />
+                </LinearLayout>
+
+                <Button
+                    android:id="@+id/combatButtonRetreat"
+                    android:layout_width="wrap_content"
+                    android:layout_height="0dp"
+                    android:layout_gravity="center"
+                    android:layout_marginStart="32dp"
+                    android:layout_marginEnd="32dp"
+                    android:layout_weight=".3"
+                    android:background="@drawable/combat_button_image"
+                    android:fontFamily="@font/raleway_semibold"
+                    android:onClick="combatClickListener"
+                    android:text="Retreat"
+                    android:textSize="10sp" />
+
             </LinearLayout>
 
         </LinearLayout>
+
+        <FrameLayout
+            android:id="@+id/combatItemTooltipLayout"
+            android:layout_width="match_parent"
+            android:layout_height="match_parent"
+            android:background="#80000000"
+            android:clickable="true"
+            android:focusable="true"
+            android:onClick="closeTooltipListener"
+            android:visibility="gone">
+
+            <RelativeLayout
+                android:id="@+id/combatItemTooltip"
+                android:layout_width="match_parent"
+                android:layout_height="match_parent"
+                android:layout_marginStart="64dp"
+                android:layout_marginTop="80dp"
+                android:layout_marginEnd="64dp"
+                android:layout_marginBottom="160dp"
+                android:background="@drawable/main_frame_background_portrait"
+                android:clickable="true"
+                android:focusable="true">
+
+                <ImageView
+                    android:id="@+id/combatItemClose"
+                    android:layout_width="20dp"
+                    android:layout_height="20dp"
+                    android:layout_alignParentTop="true"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="2dp"
+                    android:onClick="closeTooltipListener"
+                    app:srcCompat="@drawable/close_icon" />
+
+                <ImageView
+                    android:id="@+id/combatItemAvatar"
+                    android:layout_width="56dp"
+                    android:layout_height="56dp"
+                    android:layout_below="@id/combatItemClose"
+                    android:layout_alignParentEnd="true"
+                    android:layout_marginTop="2dp"
+                    android:layout_marginEnd="14dp" />
+
+                <TextView
+                    android:id="@+id/combatItemName"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_alignParentStart="true"
+                    android:layout_alignParentTop="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="28dp"
+                    android:layout_toStartOf="@id/combatItemAvatar"
+                    android:fontFamily="@font/lato_bold"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/combatItemLevel"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/combatItemName"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="1dp"
+                    android:layout_toStartOf="@id/combatItemAvatar"
+                    android:fontFamily="@font/lato"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:textSize="13sp" />
+
+                <TextView
+                    android:id="@+id/combatItemType"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/combatItemLevel"
+                    android:layout_alignParentStart="true"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="2dp"
+                    android:layout_toStartOf="@id/combatItemAvatar"
+                    android:fontFamily="@font/lato"
+                    android:shadowColor="@android:color/black"
+                    android:shadowDx="1"
+                    android:shadowDy="1"
+                    android:shadowRadius="2"
+                    android:textSize="13sp" />
+
+                <ImageView
+                    android:id="@+id/combatItemSeparator"
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/combatItemAvatar"
+                    android:layout_marginStart="18dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="18dp"
+                    android:background="@drawable/separator_white" />
+
+                <LinearLayout
+                    android:layout_width="match_parent"
+                    android:layout_height="wrap_content"
+                    android:layout_below="@id/combatItemSeparator"
+                    android:layout_marginStart="20dp"
+                    android:layout_marginTop="10dp"
+                    android:layout_marginEnd="20dp"
+                    android:orientation="vertical">
+
+                    <LinearLayout
+                        android:id="@+id/mobItemAtkLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/mobItemAtkText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="ATK :"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/mobItemAtk"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="21dp"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="+50"
+                            android:textSize="13sp" />
+
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mobItemDefLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/mobItemDefText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="DEF :"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/mobItemDef"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="20dp"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="+50"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mobItemVitLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/mobItemVitText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="VIT :"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/mobItemVit"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="24dp"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="+50"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mobItemDmgLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/mobItemDmgText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="DMG :"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/mobItemDmg"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="15dp"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="+50"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                    <LinearLayout
+                        android:id="@+id/mobItemLuckLayout"
+                        android:layout_width="match_parent"
+                        android:layout_height="match_parent"
+                        android:layout_marginTop="4dp"
+                        android:orientation="horizontal"
+                        android:visibility="gone">
+
+                        <TextView
+                            android:id="@+id/mobItemLuckText"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:fontFamily="@font/raleway_semibold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="LUCK :"
+                            android:textSize="13sp" />
+
+                        <TextView
+                            android:id="@+id/mobItemLuck"
+                            android:layout_width="wrap_content"
+                            android:layout_height="wrap_content"
+                            android:layout_marginStart="11dp"
+                            android:fontFamily="@font/lato_bold"
+                            android:shadowColor="@android:color/black"
+                            android:shadowDx="1"
+                            android:shadowDy="1"
+                            android:shadowRadius="2"
+                            android:text="+50"
+                            android:textSize="13sp" />
+                    </LinearLayout>
+
+                </LinearLayout>
+
+            </RelativeLayout>
+        </FrameLayout>
 
     </FrameLayout>
 

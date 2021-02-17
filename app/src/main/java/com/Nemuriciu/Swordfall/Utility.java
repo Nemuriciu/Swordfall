@@ -50,4 +50,8 @@ class Utility {
                 return -1;
         }
     }
+
+    static double getNextLevelExp(long nextLevel) {
+        return 1445 * Math.pow(nextLevel, 2) - 250 * nextLevel;
+    }
 }

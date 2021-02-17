@@ -7,8 +7,6 @@ import android.content.Intent;
 import android.os.Bundle;
 import android.util.Log;
 import android.widget.Button;
-import android.widget.ImageView;
-import android.widget.TextView;
 import android.widget.Toast;
 
 import com.google.android.material.textfield.TextInputEditText;
@@ -28,12 +26,6 @@ public class CharacterCreationActivity extends AppCompatActivity {
     private static final String TAG = "CharCreation";
     private String uid;
 
-    private String[] _class = {"FIGHTER", "RANGER", "WIZARD"};
-    private int currentIndex;
-    private String currentSelection;
-
-    private TextView selectedClass;
-    private ImageView avatar;
     private TextInputEditText usernameInput;
     private FirebaseFirestore db;
 
@@ -48,27 +40,8 @@ public class CharacterCreationActivity extends AppCompatActivity {
         assert extras != null;
         uid = extras.getString("uid");
 
-        selectedClass = findViewById(R.id.charCreationClass);
-        avatar = findViewById(R.id.characterCreationAvatar);
         usernameInput = findViewById(R.id.charCreationInputText);
-        ImageView leftArrow = findViewById(R.id.charCreationLeft);
-        ImageView rightArrow = findViewById(R.id.charCreationRight);
         Button confirm = findViewById(R.id.charCreationCreateButton);
-
-        currentSelection = _class[currentIndex];
-        selectedClass.setText(currentSelection);
-
-        leftArrow.setOnClickListener(v -> {
-            if (v.getId() == R.id.charCreationLeft) {
-                switchSelection("prev");
-            }
-        });
-
-        rightArrow.setOnClickListener(v -> {
-            if (v.getId() == R.id.charCreationRight) {
-                switchSelection("next");
-            }
-        });
 
         confirm.setOnClickListener(v -> {
             if (v.getId() == R.id.charCreationCreateButton) {
@@ -96,16 +69,12 @@ public class CharacterCreationActivity extends AppCompatActivity {
                                 intent.putExtra("uid", uid);
                                 intent.putExtra("username", username);
                                 intent.putExtra("level", (long)1);
-                                intent.putExtra("gold", (long)1250);
-                                intent.putExtra("currentStamina", (long)25);
-                                intent.putExtra("maxStamina", (long)25);
+                                intent.putExtra("gold", (long)100);
+                                intent.putExtra("currentStamina", (long)100);
+                                intent.putExtra("maxStamina", (long)100);
                                 intent.putExtra("currentExp", (long)0);
-                                intent.putExtra("maxExp", (long)650);
-                                intent.putExtra("atk", (long)12);
-                                intent.putExtra("def", (long)12);
-                                intent.putExtra("vit", (long)12);
-                                intent.putExtra("dmg", (long)8);
-                                intent.putExtra("luck", (long)4);
+                                intent.putExtra("maxExp", (long)2500);
+                                intent.putExtra("stats", new Stats(12, 12, 12, 4, 6, 10, 0));
                                 intent.putStringArrayListExtra("eqSlots",
                                         new ArrayList<>(Collections.nCopies(8, "0")));
                                 intent.putStringArrayListExtra("bagSlots",
@@ -128,14 +97,15 @@ public class CharacterCreationActivity extends AppCompatActivity {
         data.put("username", username);
 
         data.put("level", 1);
-        data.put("gold", 1250);
+        data.put("gold", 100);
         data.put("currentExp", 0);
-        data.put("maxExp", 650);
-        data.put("currentStamina", 150);
-        data.put("maxStamina", 150);
+        data.put("maxExp", 2500);
+        data.put("currentStamina", 100);
+        data.put("maxStamina", 100);
 
         data.put("zoneDepth", Arrays.asList(1, 1, 1, 1, 1));
-        data.put("stats", Arrays.asList(12, 12, 12, 8, 4));
+
+        data.put("stats", new Stats(12, 12, 12, 4, 6, 10, 0));
         data.put("eqSlots", Collections.nCopies(8, "0"));
         data.put("bagSlots", Collections.nCopies(56, "0"));
 
@@ -154,36 +124,6 @@ public class CharacterCreationActivity extends AppCompatActivity {
         }
 
         return true;
-    }
-
-    private void switchSelection(String dir) {
-        if (dir.equals("prev")) {
-            if (currentIndex == 0)
-                currentIndex = _class.length - 1;
-            else
-                currentIndex--;
-        } else if (dir.equals("next")) {
-            if (currentIndex == _class.length - 1)
-                currentIndex = 0;
-            else
-                currentIndex++;
-        }
-
-        currentSelection = _class[currentIndex];
-
-        switch (currentSelection) {
-            case "FIGHTER":
-                avatar.setImageResource(R.drawable.character_creation_avatar_fighter);
-                break;
-            case "RANGER":
-                avatar.setImageResource(R.drawable.character_creation_avatar_ranger);
-                break;
-            case "WIZARD":
-                avatar.setImageResource(R.drawable.character_creation_avatar_wizard);
-                break;
-        }
-
-        selectedClass.setText(currentSelection);
     }
 
     @Override

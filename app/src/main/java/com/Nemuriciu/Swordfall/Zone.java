@@ -2,13 +2,12 @@ package com.Nemuriciu.Swordfall;
 
 class Zone {
 
-    int index;
+    int index, level;
     String name;
-    long depth;
 
-    Zone(int index, String name, long depth) {
+    Zone(int index, String name, int level) {
         this.index = index;
         this.name = name;
-        this.depth = depth;
+        this.level = level;
     }
 }
